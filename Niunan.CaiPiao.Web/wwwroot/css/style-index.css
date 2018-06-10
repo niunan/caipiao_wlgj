@@ -1,0 +1,511 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    color: #444444;
+    font-size: 13px;
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:visited {
+    text-decoration: none;
+    outline: none;
+}
+
+a.static-link {
+    cursor: pointer;
+}
+
+:focus {
+    outline: none;
+}
+
+th {
+    font-weight: normal;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url(../img/icons/collapse.png) !important;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.client-model {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: default;
+}
+
+/*css3效果*/
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotate {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+/*自定义样式*/
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.m-t-20 {
+    margin-top: 20px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-l-10 {
+    margin-left: 10px;
+}
+
+.m-l-20 {
+    margin-left: 10px;
+}
+
+.m-r-10 {
+    margin-right: 10px;
+}
+
+.m-r-20 {
+    margin-right: 20px;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.f-18 {
+    font-size: 18px;
+}
+
+.f-20 {
+    font-size: 20px;
+}
+
+/*重写Bootstrap样式*/
+label {
+    font-weight: normal;
+}
+
+.form-control {
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #ececec;
+}
+
+.form-control:focus {
+    border-color: #ccc;
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.has-success .help-block,
+.has-success .control-label,
+.has-success .radio,
+.has-success .checkbox,
+.has-success .radio-inline,
+.has-success .checkbox-inline,
+.has-success.radio label,
+.has-success.checkbox label,
+.has-success.radio-inline label,
+.has-success.checkbox-inline label {
+    color: #2da31c;
+}
+
+.has-success .control-label {
+    color: inherit;
+}
+
+.has-success .form-control {
+    border-color: #2da31c;
+}
+
+.has-success .form-control:focus {
+    border-color: #2da31c;
+}
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label {
+    color: #df3937;
+}
+
+.has-error .control-label {
+    color: inherit;
+}
+
+.has-error .form-control {
+    border-color: #df3937;
+}
+
+.has-error .form-control:focus {
+    border-color: #df3937;
+}
+
+.btn {
+    border: none;
+    border-radius: 0;
+}
+
+.btn:hover {
+    border: none;
+}
+
+.btn-primary {
+    background-color: #56ace5;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: #529dd1 !important;
+}
+
+.btn-success {
+    background-color: #007d77;
+}
+
+.btn-success:hover,
+.btn-success:active {
+    background-color: #007d77 !important;
+}
+
+.btn-warning {
+    background-color: #ff7825;
+}
+
+.btn-warning:hover,
+.btn-warning:active {
+    background-color: #e87026 !important;
+}
+
+.btn-link,
+.btn-link:hover {
+    color: inherit;
+}
+
+.btn-link.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.form-group.input-icon {
+    position: relative;
+}
+
+.form-group.input-icon > i {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: #ececec;
+}
+
+.form-group.input-icon.icon-left > i {
+    top: 8px;
+    left: 8px;
+}
+
+.form-group.input-icon.icon-right > i {
+    right: 8px;
+    top: 8px;
+}
+
+.form-group.input-icon.icon-left > input {
+    text-indent: 20px;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+    background: #fafafa;
+}
+
+/*加载插件*/
+.ajax-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(../img/input_spinner.svg) no-repeat center, rgba(255, 255, 255, 0.6);
+    background-size: 24px 24px;
+    z-index: 1;
+    cursor: wait;
+}
+
+/*重写日期插件*/
+.datepicker {
+    border-radius: 0;
+    box-shadow: 5px 5px rgba(102, 102, 102, 0.16);
+}
+
+/*重写表格样式*/
+.table-condensed td.active,
+.table-condensed span.active {
+    background: #56ace5 !important;
+}
+
+.table-condensed > tbody > tr > td,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > td,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > thead > tr > th {
+    padding: 3px 5px;
+}
+
+.table > tbody {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+.table > tbody > tr.empty {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/*分页*/
+.easy-page > .page-list > .active > a,
+.easy-page > .page-list > .active > span,
+.easy-page > .page-list > .active > a:hover,
+.easy-page > .page-list > .active > span:hover,
+.easy-page > .page-list > .active > a:focus,
+.easy-page > .page-list > .active > span:focus {
+    background: #e33534;
+    border-color: #e33534;
+}
+
+/*sweetalert*/
+.swal2-overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 19999;
+}
+
+.swal2-modal {
+    z-index: 20000;
+}
+
+.swal2-modal .swal2-confirm {
+    background: #007d77 !important;
+}
+
+.swal2-modal .swal2-confirm:hover {
+    background: #39a98e !important;
+}
+
+.swal2-modal h2 {
+    font-weight: normal;
+}
+
+/*jBox插件样式*/
+#jBox-overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.jBox-Modal .jBox-container,
+.jBox-Confirm .jBox-container {
+    border: none;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+}
+
+.jBox-Modal .jBox-title,
+.jBox-Confirm .jBox-title {
+    height: 60px;
+    line-height: 60px;
+    margin: 0 20px;
+    background: transparent;
+    padding: 0 5px !important;
+    font-size: 16px;
+    color: #666666;
+    border-radius: 0;
+    border-bottom: 1px solid #ececec;
+    text-shadow: none;
+
+}
+
+.jBox-Modal.title-center .jBox-title {
+    text-align: center;
+}
+
+.jBox-Modal .jBox-title span,
+.jBox-Confirm .jBox-title span {
+    font-size: 14px;
+}
+
+.jBox-closeButton-title .jBox-closeButton {
+    top: 14px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 24px;
+    color: #666666;
+}
+
+.jBox-closeButton-title .jBox-closeButton:hover {
+    color: #d55;
+}
+
+.jBox-closeButton-title .jBox-closeButton path,
+.jBox-closeButton-title .jBox-closeButton:hover path,
+.jBox-closeButton-title .jBox-closeButton:active path {
+    fill: #fff;
+}
+
+.jBox-Modal .jBox-content,
+.jBox-Confirm .jBox-content {
+    padding: 0;
+}
+
+.jBox-Modal .form-horizontal {
+    color: #787878;
+}
+
+.jBox-Modal .form-horizontal .form-body {
+    padding: 30px 15px 0 15px;
+}
+
+.jBox-Modal .form-horizontal .form-group {
+    margin-bottom: 0;
+}
+
+.jBox-Modal .form-horizontal .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.jBox-Modal .form-horizontal .form-group .form-help {
+    padding: 10px 0;
+}
+
+.jBox-Modal .form-horizontal .form-actions {
+    display: table;
+    width: 100%;
+    padding: 0 15px 30px 15px;
+}
+
+.jBox-Modal .btn-confirm {
+    color: #fff;
+    border: 1px solid #4898d5;
+    background-color: #2e8ded;
+    padding: 8px 12px;
+    border-radius: 2px;
+}
+
+.jBox-Modal .btn-cancel {
+    color: #333;
+    border: 1px solid #dedede;
+    background-color: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 2px;
+}
+
+.easy-page > .page-list > li > a {
+    border-radius: 3px;
+}
+
+/*页面样式*/
+.page-header-wrapper {
+    position: relative;
+    width: 100%;
+    box-shadow: 0 0 8px #bfbfbf;
+}
+
+.fixed-header .page-header-wrapper {
+    position: fixed;
+    z-index: 99;
+}
+
+.page-content-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.fixed-header .page-content-wrapper {
+    padding-top: 118px;
+}
+
+.page-footer-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.page-container {
+    width: 100%;
+    /*height: 100%;*/
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+}
+
+.container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container.white-bg {
+    background: #ffffff;
+}

@@ -1,0 +1,126 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\guest.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Adnn1n\Views\CaiZhong\Add.cshtml" />
+    <None Include="Areas\Adnn1n\Views\CaiZhong\Index.cshtml" />
+    <None Include="Areas\Adnn1n\Views\Home\Index.cshtml" />
+    <None Include="Areas\Adnn1n\Views\Home\Left.cshtml" />
+    <None Include="Areas\Adnn1n\Views\Home\Top.cshtml" />
+    <None Include="Areas\Adnn1n\Views\Home\Welcome.cshtml" />
+    <None Include="Areas\Adnn1n\Views\Login\Index.cshtml" />
+    <None Include="Areas\Adnn1n\Views\News\Add.cshtml" />
+    <None Include="Areas\Adnn1n\Views\News\Index.cshtml" />
+    <None Include="Areas\Adnn1n\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\Adnn1n\Views\UserInfo\Add.cshtml" />
+    <None Include="Areas\Adnn1n\Views\UserInfo\Index.cshtml" />
+    <None Include="Areas\Adnn1n\Views\UserInfo\ShowMX.cshtml" />
+    <None Include="Areas\Adnn1n\Views\UserInfo\TJTuPu.cshtml" />
+    <None Include="wwwroot\img\yzm.png" />
+    <None Include="wwwroot\js\guest.js" />
+    <None Include="wwwroot\kindeditor\kindeditor-all-min.js" />
+    <None Include="wwwroot\kindeditor\kindeditor-all.js" />
+    <None Include="wwwroot\kindeditor\kindeditor-min.js" />
+    <None Include="wwwroot\kindeditor\kindeditor.js" />
+    <None Include="wwwroot\kindeditor\lang\ar.js" />
+    <None Include="wwwroot\kindeditor\lang\en.js" />
+    <None Include="wwwroot\kindeditor\lang\ko.js" />
+    <None Include="wwwroot\kindeditor\lang\zh_CN.js" />
+    <None Include="wwwroot\kindeditor\lang\zh_TW.js" />
+    <None Include="wwwroot\kindeditor\plugins\anchor\anchor.js" />
+    <None Include="wwwroot\kindeditor\plugins\autoheight\autoheight.js" />
+    <None Include="wwwroot\kindeditor\plugins\baidumap\baidumap.js" />
+    <None Include="wwwroot\kindeditor\plugins\clearhtml\clearhtml.js" />
+    <None Include="wwwroot\kindeditor\plugins\code\code.js" />
+    <None Include="wwwroot\kindeditor\plugins\code\prettify.js" />
+    <None Include="wwwroot\kindeditor\plugins\emoticons\emoticons.js" />
+    <None Include="wwwroot\kindeditor\plugins\filemanager\filemanager.js" />
+    <None Include="wwwroot\kindeditor\plugins\flash\flash.js" />
+    <None Include="wwwroot\kindeditor\plugins\image\image.js" />
+    <None Include="wwwroot\kindeditor\plugins\insertfile\insertfile.js" />
+    <None Include="wwwroot\kindeditor\plugins\lineheight\lineheight.js" />
+    <None Include="wwwroot\kindeditor\plugins\link\link.js" />
+    <None Include="wwwroot\kindeditor\plugins\map\map.js" />
+    <None Include="wwwroot\kindeditor\plugins\media\media.js" />
+    <None Include="wwwroot\kindeditor\plugins\multiimage\images\swfupload.swf" />
+    <None Include="wwwroot\kindeditor\plugins\multiimage\multiimage.js" />
+    <None Include="wwwroot\kindeditor\plugins\pagebreak\pagebreak.js" />
+    <None Include="wwwroot\kindeditor\plugins\plainpaste\plainpaste.js" />
+    <None Include="wwwroot\kindeditor\plugins\preview\preview.js" />
+    <None Include="wwwroot\kindeditor\plugins\quickformat\quickformat.js" />
+    <None Include="wwwroot\kindeditor\plugins\table\table.js" />
+    <None Include="wwwroot\kindeditor\plugins\template\template.js" />
+    <None Include="wwwroot\kindeditor\plugins\wordpaste\wordpaste.js" />
+    <None Include="wwwroot\layui\font\iconfont.svg" />
+    <None Include="wwwroot\layui\layui.all.js" />
+    <None Include="wwwroot\layui\layui.js" />
+    <None Include="wwwroot\layui\lay\modules\carousel.js" />
+    <None Include="wwwroot\layui\lay\modules\code.js" />
+    <None Include="wwwroot\layui\lay\modules\element.js" />
+    <None Include="wwwroot\layui\lay\modules\flow.js" />
+    <None Include="wwwroot\layui\lay\modules\form.js" />
+    <None Include="wwwroot\layui\lay\modules\jquery.js" />
+    <None Include="wwwroot\layui\lay\modules\laydate.js" />
+    <None Include="wwwroot\layui\lay\modules\layedit.js" />
+    <None Include="wwwroot\layui\lay\modules\layer.js" />
+    <None Include="wwwroot\layui\lay\modules\laypage.js" />
+    <None Include="wwwroot\layui\lay\modules\laytpl.js" />
+    <None Include="wwwroot\layui\lay\modules\mobile.js" />
+    <None Include="wwwroot\layui\lay\modules\table.js" />
+    <None Include="wwwroot\layui\lay\modules\tree.js" />
+    <None Include="wwwroot\layui\lay\modules\upload.js" />
+    <None Include="wwwroot\layui\lay\modules\util.js" />
+    <None Include="wwwroot\skin\17\bg_pay.png" />
+    <None Include="wwwroot\skin\17\core.css" />
+    <None Include="wwwroot\skin\17\core.js" />
+    <None Include="wwwroot\skin\17\icon_gd11x5.png" />
+    <None Include="wwwroot\skin\17\icon_lhc.png" />
+    <None Include="wwwroot\skin\17\icon_pk10.png" />
+    <None Include="wwwroot\skin\17\icon_ssc.png" />
+    <None Include="wwwroot\skin\17\license1.png" />
+    <None Include="wwwroot\skin\17\license2.png" />
+    <None Include="wwwroot\skin\17\license3.png" />
+    <None Include="wwwroot\skin\17\license4.png" />
+    <None Include="wwwroot\skin\17\logo1.png" />
+    <None Include="wwwroot\skin\17\unslider.min.js" />
+    <None Include="wwwroot\skin\js\jquery-1.8.3.min.js" />
+    <None Include="wwwroot\skin\main\onload.js" />
+    <None Include="wwwroot\skin\main\reglogin.js" />
+    <None Include="wwwroot\yoy\images\kf\1.png" />
+    <None Include="wwwroot\yoy\images\kf\2.png" />
+    <None Include="wwwroot\yoy\images\kf\3.png" />
+    <None Include="wwwroot\yoy\js\global.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Niunan.CaiPiao.BLL\Niunan.CaiPiao.BLL.csproj" />
+    <ProjectReference Include="..\Niunan.CaiPiao.DAL\Niunan.CaiPiao.DAL.csproj" />
+    <ProjectReference Include="..\Niunan.CaiPiao.Model\Niunan.CaiPiao.Model.csproj" />
+    <ProjectReference Include="..\Niunan.CaiPiao.Util\Niunan.CaiPiao.Util.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Adnn1n\Data\" />
+    <Folder Include="Areas\Adnn1n\Models\" />
+  </ItemGroup>
+
+</Project>

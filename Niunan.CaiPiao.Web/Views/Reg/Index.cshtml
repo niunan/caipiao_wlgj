@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewData["Title"] = "用户注册";
+}
+
+<div class="banner-reg">
+    <div class="radio">
+        <div class="container">
+            <span>最新消息 / NEWS</span>
+            <marquee id="noticeDom" scrollamount="4" scrolldelay="100" direction="left" onmouseover="this.stop();" onmouseout="this.start();">全网第一最具公信力信誉平台！两面赔率1.99  定位赔率9.9  期期返水0.5%！集齐当红最热高频彩票一站式体验！玩法公平、规则公正、信誉公开！大额无忧！百万取款3分钟内火速到账！</marquee>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="container clearfix">
+        @Html.Partial("_LeftNav")
+        <div class="content">
+            <div class="reg-tb">
+                <div class="tit">
+                    <img src="/skin/17/logo1.png" alt="">
+                    <p>万利国际娱乐 · 挣第一</p>
+                    <p>加入万利国际娱乐，幸运非你莫属！</p>
+                </div>
+                <form class="layui-form" action="">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th width="100"></th>
+                                <th width="300"></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td class="lname">会员账号：</td>
+                                <td>
+                                    <input maxlength="15" name="username" id="username" type="text" required  lay-verify="required">
+                                </td>
+                                <td>*格式长度6-15个字符内,请牢记</td>
+                            </tr>
+                            <tr>
+                                <td class="lname">登录密码：</td>
+                                <td>
+                                    <input maxlength="40" id="password" name="password" type="password" required  lay-verify="required">
+                                </td>
+                                <td>*格式长度6-15个字符内,请牢记</td>
+                            </tr>
+                            <tr>
+                                <td class="lname">确认密码：</td>
+                                <td>
+                                    <input maxlength="40" id="password2" name="password2" type="password" required  lay-verify="required">
+                                </td>
+                                <td>*同上</td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="lname"> 推荐人ID：</td>
+                                <td>
+                                    <input placeholder="请输入推荐人ID(选填)" id="parent_id" name="parent_id" type="text">
+                                </td>
+                                <td></td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="lname">真实姓名：</td>
+                                <td>
+                                    <input placeholder="请输入真实姓名" id="realname" name="realname" type="text" required  lay-verify="required">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="lname">取款密码：</td>
+                                <td>
+                                    <input name="txpassword" id="txpassword" type="text" required  lay-verify="required">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="lname">电子邮箱：</td>
+                                <td>
+                                    <input name="email" id="email" size="40" maxlength="30" type="text" required  lay-verify="required">
+                                </td>
+                                <td>*电子邮箱(Email)格式：88888888@qq.com</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input class="btn-reg" value="提交注册" type="submit" lay-submit lay-filter="formDemo">
+                                    <input class="btn-reset" value="重新输入" type="reset">
+                                    @Html.AntiForgeryToken()
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //Demo
+    layui.use(['form','layer'], function () {
+        var form = layui.form, $ = layui.jquery, layer = layui.layer;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            var postdata = (data.field);
+            if (postdata.password != postdata.password2) {
+                layer.alert('二次输入的密码不相同！');
+                return false;
+            }
+            var url = "/reg/index";
+            pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+            console.log(postdata);
+            $.post(url,postdata, function (data) {
+                layer.close(pop_index);
+                if (data.code == 0) {
+                    layer.msg(data.msg, function () { location.href = "/"; });
+                } else {
+                    layer.msg(data.msg);
+                }
+            })
+            return false;
+        });
+    });
+</script>

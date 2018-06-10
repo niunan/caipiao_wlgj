@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+ 
+ 
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>会员管理-后台管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no"> 
+    <link href="/layui/css/layui.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo logo">
+                <h1 style="color:white;font-size:22px;">后台管理</h1>
+            </div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left"> 
+                <li class="layui-nav-item layui-this"><a href="/Adnn1n/Home/Welcome" target="rightFrame" >后台首页</a></li> 
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <!--<li class="layui-nav-item"><a href="/test/config.html" target="_blank">打印配置</a></li>-->
+                <li class="layui-nav-item"><a href="/" target="_blank">前台首页</a></li>
+                <li class="layui-nav-item"><a href="/Adnn1n/ModPwd/Index" target="rightFrame" >修改密码</a></li>
+                <!--<li class="layui-nav-item"><a href="">通知(<strong style="color: red;">12</strong>)</a></li>-->
+                <li class="layui-nav-item">
+                    <a href="javascript:;"> 
+                        @ViewBag.username
+                    </a> 
+                </li>
+                <li class="layui-nav-item"><a href="/adnn1n/login/loginout" target="_parent">退出</a></li>
+            </ul>
+        </div>
+ 
+ 
+
+    </div>
+    <script src="/layui/layui.js"></script>
+ 
+    <script type="text/javascript">
+        layui.use('element', function () { 
+        });
+    </script>
+
+ 
+
+</body>
+</html>

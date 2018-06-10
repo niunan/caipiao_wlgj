@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.9.9.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Niunan.CaiPiao.DAL\Niunan.CaiPiao.DAL.csproj" />
+    <ProjectReference Include="..\Niunan.CaiPiao.Model\Niunan.CaiPiao.Model.csproj" />
+  </ItemGroup>
+
+</Project>

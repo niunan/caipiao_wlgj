@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = null;
+}
+
+ 
+ 
+     
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>会员管理-后台管理</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" /> 
+    <link href="/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+ 
+
+        <div class="layui-side layui-bg-black" style="top:0;">
+            <div class="layui-side-scroll highlight">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="left_url">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">用户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/adnn1n/userinfo/Index" target="rightFrame">所有用户</a></dd>
+                            <dd><a href="/adnn1n/yugengdan/Index" target="rightFrame">预跟单用户</a></dd>
+                            <dd><a href="/adnn1n/liushui/Index" target="rightFrame">用户流水</a></dd>
+                            <dd><a href="/adnn1n/liushui/fanshui" target="rightFrame">手工返水</a></dd>
+                            <dd><a href="/adnn1n/userbank/index" target="rightFrame">用户银行卡</a></dd>
+                            <dd><a href="/adnn1n/userinfo/TJTuPu" target="rightFrame">推荐图谱</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">跟单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/adnn1n/xiazhuinfo/add" target="rightFrame">跟单</a></dd>
+                            <dd><a href="/adnn1n/xiazhuinfo/Index" target="rightFrame">所有跟单</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">上下分管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/adnn1n/chongzhi/Index" target="rightFrame">所有上分</a></dd>
+                            <dd><a href="/adnn1n/tixian/Index" target="rightFrame">所有下分</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">统计报表</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Adnn1n/tongji/ZhouZhi" target="rightFrame">走势图</a></dd>
+                            <dd><a href="/Adnn1n/tongji/qishu" target="rightFrame">每日期数统计</a></dd>
+                            <dd><a href="/Adnn1n/tongji/yinli" target="rightFrame">每日盈利统计</a></dd>
+                            <dd><a href="/Adnn1n/tongji/YinLi_Simple" target="rightFrame">每日盈利统计(简单版)</a></dd>
+                            <td><a href="/Adnn1n/TongJi/Zhou_BuMoLei" target="rightFrame">周统计-不抺雷</a></td>
+                            <td><a href="/Adnn1n/TongJi/Zhou_MoLei" target="rightFrame">周统计-抺雷</a></td>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">彩种管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Adnn1n/caizhong/Index" target="rightFrame">彩种</a></dd>
+                            <dd><a href="/Adnn1n/WanFa/Index" target="rightFrame">玩法</a></dd>
+                            <dd><a href="/Adnn1n/qihaoinfo/Index" target="rightFrame">期号</a></dd>
+                            <dd><a href="/Adnn1n/kaijianginfo/Index" target="rightFrame">开奖</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">文章管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="/Adnn1n/news/add?cabh=01" target="rightFrame">关于我们</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=02" target="rightFrame">联系我们</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=03" target="rightFrame">联盟合作</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=04" target="rightFrame">存款帮助</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=05" target="rightFrame">取款帮助</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=06" target="rightFrame">常见问题</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=07" target="rightFrame">优惠活动</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=08" target="rightFrame">APP下载</a></dd>
+                            <dd><a href="/Adnn1n/news/add?cabh=09" target="rightFrame">在线客服</a></dd>
+                        </dl>
+                    </li>
+
+                    @*<li class="layui-nav-item">
+                    <a class="" href="javascript:;">系统管理</a>
+                    <dl class="layui-nav-child">
+
+
+
+        <dd><a href="/Adnn1n/syslog/index" target="rightFrame">系统日志</a></dd>
+                    <dd><a href="/Adnn1n/emailset/index" target="rightFrame">邮件配置</a></dd>
+                    <dd><a href="/Adnn1n/tongji/SendEmail" target="rightFrame">统计邮件</a></dd>
+                    <dd><a href="/Adnn1n/shuxing/index" target="rightFrame">零点返还</a></dd>
+                    <dd><a href="/Adnn1n/shuxing/dxdsshouxufee" target="rightFrame">大小单双版手续费</a></dd>
+                    <dd><a href="/Adnn1n/shuxing/teshu" target="rightFrame">特殊号返还</a></dd>
+            </dl>
+            </li>*@
+                    @*<li class="layui-nav-item">
+            <a class="" href="javascript:;">APP端管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/Adnn1n/News/Index" target="rightFrame">动态</a></dd>
+                <dd><a href="/Adnn1n/shuxing/WXKeFu" target="rightFrame">微信客户号</a></dd>
+            </dl>
+        </li>*@
+                </ul>
+            </div>
+        </div>
+ 
+
+    </div>
+    <script src="/layui/layui.js"></script> 
+    <script type="text/javascript">
+        layui.use('element', function () { 
+        });
+    </script>
+ 
+
+</body>
+</html>

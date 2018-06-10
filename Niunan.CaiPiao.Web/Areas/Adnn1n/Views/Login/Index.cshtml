@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+}
+ 
+
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>后台登录</title>
+
+    <link type="text/css" rel="stylesheet" href="/vivaldi/libs.css?767" />
+    <link type="text/css" rel="stylesheet" href="/vivaldi/styles.css?767" />
+    <link href="/layui/css/layui.css" rel="stylesheet" />
+    <script src="/layui/layui.js"></script>
+</head>
+<body>
+    <div class="pSevenMain">
+        <div id="pSevenContent" class="">
+            <!--<video id="video_local" class="video" style="display: none"></video>--> <!--<video id="video_remote" class="video" style="display: none"></video>-->  <!--<div class="flash_wrapper">-->  <!--</div>-->
+            <div class="screens">
+                <div class="screen LoginLayout" style="">
+                    <div class="login_panel login">
+                        <div class="login_panel_content" style="backface-visibility: inherit;">
+                            <div class="header custom_logo">
+                                <!-- ko if: loginCustomLogo() === '' --><!-- /ko --> <!-- ko if: loginCustomLogo() !== '' -->
+                             <h1 style="color:white;font-weight:bold;font-size:18px;text-align:center;">后台登录</h1>
+                            </div> <!-- ko if: bSocialInviteMode --><!-- /ko --> <!-- ko if: !bSocialInviteMode --> <div class="content login clearfix">
+                                <!-- ko template: {name: 'Login_LoginViewModel', data: oLoginViewModel} -->
+                                <form class="form fields command enable" action="" method="post">
+                                    <div class="fieldset">
+
+                                        <div class="row login focused">
+                                            <label for="login" class="title placeholder"></label>
+                                            <span class="value">
+                                                <input id="username" required="required" name="username" tabindex="2" class="input check_autocomplete_input" placeholder="用户名" type="text" />
+                                            </span>
+                                        </div>
+                                        <div class="row password filled">
+                                            <label for="selenium_login_password" class="title placeholder"></label>
+                                            <span class="value">
+                                                <input id="password" required="required" tabindex="3" class="input check_autocomplete_input" name="password" spellcheck="false" placeholder="密码" type="password" />
+                                            </span>
+                                        </div> 
+                                        <div class="row password filled">
+                                            <label for="selenium_login_password" class="title placeholder"></label>
+                                            <span class="value">
+                                                <input id="yzm" required="required" tabindex="4" class="input check_autocomplete_input" name="yzm" spellcheck="false" placeholder="验证码" type="text" style="width:110px;" />
+                                                <img src="/Adnn1n/Home/GenYZM" id="img_code" onclick="change_code()" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row buttons">
+                                        <button type="submit" tabindex="5" class="button login command enable">登 录</button>
+                                        @Html.AntiForgeryToken()
+                                    </div> <div class="row signme" data-bind="visible: signMeType() !== Enums.LoginSignMeType.Unuse">
+                                        <span>
+                                            <br /><br />
+                                            <p>
+                                                版权所有 &copy; niunan.net
+                                                make by niunan
+                                            </p>
+                                        </span>
+                                    </div> <div class="row links">
+
+                                    </div>
+                                </form> <!-- /ko -->
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div> <div class="vhelper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 7.6.7 -->
+    <script>
+        function change_code() {
+            document.getElementById('img_code').src = "/Adnn1n/Home/GenYZM?t=" + new Date().valueOf();
+        }
+
+ 
+    </script>
+</body>
+</html>

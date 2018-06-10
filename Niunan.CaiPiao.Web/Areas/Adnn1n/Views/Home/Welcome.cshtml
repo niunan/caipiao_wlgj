@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "欢迎页";
+    //Niunan.CaiPiao.DAL.XiazhuinfoDAL xzdal = new Niunan.CaiPiao.DAL.XiazhuinfoDAL();
+    //Niunan.CaiPiao.DAL.UserinfoDAL udal = new Niunan.CaiPiao.DAL.UserinfoDAL();
+    //Niunan.CaiPiao.DAL.QihaoinfoDAL qhdal = new Niunan.CaiPiao.DAL.QihaoinfoDAL();
+    //Niunan.CaiPiao.DAL.LiushuiDAL lsdal = new Niunan.CaiPiao.DAL.LiushuiDAL();
+    //Niunan.CaiPiao.DAL.TixianDAL txdal = new Niunan.CaiPiao.DAL.TixianDAL();
+    //DateTime d_now = DateTime.Now;
+    //DateTime d_yestoday = DateTime.Now.AddDays(-1);
+    //string today = DateTime.Now.ToString("yyyy-MM-dd");
+    //string yestoday = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+    //double heji = 0;
+
+}
+
+<style>
+    .layui-tab {
+        float: left;
+        margin: 1rem;
+        width: 300px;
+        border: 1px solid #e6e6e6;
+    }
+
+    .layui-tab-content {
+        font-size: 38px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="mainindex">
+
+
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">今日跟单数</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">今日跟单余额</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">今日中奖余额</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">今日开特殊号期数</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">昨日跟单数</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">昨日跟单余额</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">昨日中奖余额</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">昨日开特殊号期数</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">用户总数</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">用户余额总计</li>
+        </ul>
+        <div class="layui-tab-content">0</div>
+    </div>
+
+
+    <div style="clear:both;"></div>
+
+
+</div>
+<div>
+
+    <form class="layui-form" action="">
+        <div class="layui-input-inline">
+            <input type="text" id="startdate" placeholder="开始日期" style="width:250px;" class="layui-input" />
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" id="enddate" placeholder="结束日期" style="width:250px;" class="layui-input" />
+        </div>
+        <div class="layui-input-inline">
+            <button class="layui-btn" onclick="showone()" type="button"><i class="layui-icon">&#xe615;</i> 查询</button>
+        </div>
+
+
+        <div class="layui-input-inline" style="margin-left:30px;">
+            <input type="checkbox" name="switch" lay-skin="switch" lay-text="显示|隐藏" lay-filter="showacc" checked="checked">
+        </div>
+
+    </form>
+
+    <div id="div_table">
+
+        @{
+
+            @*string tablehtml = Niunan.CaiPiao.Web.Code.OtherTool.GenTongJiTable(DateTime.Now.AddDays(-7), DateTime.Now);
+
+            @Html.Raw(tablehtml)*@
+
+        }
+
+
+    </div>
+
+    <div style="margin-top:20px;">
+        <div class="layui-input-inline">输入三级密码查看用户跟单统计：</div>
+        <div class="layui-input-inline">
+            <input type="password" id="passowrd3" class="layui-input" />
+        </div>
+        <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-normal" onclick="showusermx()" type="button"><i class="layui-icon">&#xe615;</i> 查看</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/get_tixing.js"></script>
+<script>
+
+ 
+
+
+    /*日期选择控件设置*/
+    layui.use(['laydate', 'form'], function () {
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var $ = layui.jquery;
+        laydate.render({
+            elem: '#startdate' //指定元素
+        });
+        laydate.render({
+            elem: '#enddate' //指定元素
+        });
+
+
+        //监听上否显示
+        form.on('switch(showacc)', function (data) {
+            var b = data.elem.checked; //开关是否开启，true或者false
+            if (b) {
+                $("#div_table").show();
+            } else {
+                $("#div_table").hide();
+            }
+        });
+    });
+
+    function showone() {
+        layui.use('layer', function () {
+            var date = $('#startdate').val();
+            var date2 = $('#enddate').val();
+            if (date == '' || date2 == '') {
+                alert('请先选择需要查询的日期！');
+                return false;
+            }
+            var url = "/adnn1n/home/showoneday?startdate=" + date+"&enddate="+date2;
+            pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+            $.post(url, function (data) {
+                layer.close(pop_index);
+                $('#div_table').html(data.msg);
+            }, 'json');
+        })
+
+    }
+
+
+    function showusermx() {
+
+        var pwd3 = $('#passowrd3').val();
+        if (pwd3 == undefined || pwd3 == '') {
+            console.log(pwd3);
+            alert('请输入三级密码');
+            return false;
+        }
+        window.open("/Adnn1n/Userinfo/showmx?pwd3=" + encodeURIComponent(pwd3));
+
+    }
+</script>

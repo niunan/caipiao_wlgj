@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "推荐图谱";
+}
+<link href="/content/jquery-easyui-1.5.4.1/themes/default/easyui.css" rel="stylesheet" />
+<link href="/content/jquery-easyui-1.5.4.1/themes/icon.css" rel="stylesheet" />
+<script src="/content/jquery-easyui-1.5.4.1/jquery.min.js"></script>
+<script src="/content/jquery-easyui-1.5.4.1/jquery.easyui.min.js"></script>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+
+
+<table title="推荐图谱" class="easyui-treegrid" style="width:1000px;height:700px"
+       url="/Adnn1n/Userinfo/TJTuPu_Ajax"
+       rownumbers="true"
+       idField="id" treeField="username">
+    <thead>
+        <tr>
+            <th field="username">用户名</th>
+            <th field="id">用户ID</th>
+            <th field="regdate">注册时间</th>
+            <th field="balance">用户余额</th>
+            <th field="today_tz">今日下注总额</th>
+            <th field="today_zj">今日中奖总额</th>
+            <th field="xjcount">下级总数</th>
+            <th field="op"></th>
+        </tr>
+    </thead>
+</table>

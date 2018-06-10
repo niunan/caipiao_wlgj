@@ -1,0 +1,79 @@
+﻿@model Niunan.CaiPiao.Model.Caizhong
+@{
+    ViewBag.Title = Model.id == 0 ? "新增彩种" : "编辑彩种";
+}
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+<form class="layui-form" action="">
+
+    <div class='layui-form'>
+  
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>名称</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.czname, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>备注</label>
+            <div class='layui-input-block'>
+                @Html.TextBoxFor(a => a.remark, new { @class = "layui-input"  })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            <label class='layui-form-label'>&nbsp;</label>
+            <div class="layui-input-inline">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">@ViewBag.Title</button>
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+
+</form>
+ 
+<script>
+var pop_index;
+ 
+
+        /*加载layui编辑器*/
+        layui.use(['form',  'layer','laydate','upload'], function () {
+            var form = layui.form;
+var laydate = layui.laydate;
+  var upload = layui.upload;
+  var layer = layui.layer;
+  var $ = layui.jquery;
+
+ 
+
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                var url = "/adnn1n/Caizhong/add";
+                var postdata = data.field;
+		 
+                pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+                $.post(url, postdata, function (data) {
+layer.close(pop_index);
+                    if (data.code == 0) {
+                        layer.msg(data.msg, function () { location.href = "/adnn1n/Caizhong/";})
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }, 'json')
+                return false;
+            });
+
+        });
+</script>
+

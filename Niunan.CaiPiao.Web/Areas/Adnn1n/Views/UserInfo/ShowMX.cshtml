@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "用户近三天统计";
+    List<Niunan.CaiPiao.Model.Userinfo> list = ViewBag.userlist;
+    Niunan.CaiPiao.DAL.XiazhuinfoDAL xzdal = new Niunan.CaiPiao.DAL.XiazhuinfoDAL();
+    string key = Request["key"];
+}
+<div>
+    <div class="layui-input-inline">
+        <input type="text" id="search_date" style="width:250px;" class="layui-input" />
+    </div>
+    <div class="layui-input-inline">
+        <button class="layui-btn" onclick="showone()" type="button"><i class="layui-icon">&#xe615;</i> 查询</button>
+    </div>
+</div>
+@if (string.IsNullOrEmpty(key))
+{
+    for (int i = 0; i < 3; i++)
+    {
+        DateTime date = DateTime.Now.AddDays(-i);
+        string datestr = date.ToString("yyyy-MM-dd");
+        string mingtian = date.AddDays(1).ToString("yyyy-MM-dd"); //明天的日期
+
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">@datestr</li>
+            </ul>
+        </div>
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>用户ID</th>
+                    <th>用户名</th>
+                    <th>跟单次数</th>
+                    <th>跟单金额</th>
+                    <th>中奖金额（含特殊号返55%）</th>
+                    <th>盈亏</th>
+                    <th>中特殊号期数</th>
+                    <th>特殊号返还金额</th>
+                    <th>专家版次数</th>
+                    <th>专家版金额</th>
+                    <th>大版次数</th>
+                    <th>大版金额</th>
+                    <th>小版次数</th>
+                    <th>小版金额</th>
+                    <th>单版次数</th>
+                    <th>单版金额</th>
+                    <th>双版次数</th>
+                    <th>双版金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in list)
+                {
+                    double all_buy = xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id} and createtime between '{datestr}' and '{mingtian}'");
+                    double all_zj = xzdal.GetOneFiled_double("sum(zjmoney)", $"userid={user.id} and createtime between '{datestr}' and '{mingtian}'");
+                    double yinkui = all_buy - all_zj;
+                    <tr>
+                        <td>@user.id</td>
+                        <td>@user.username</td>
+                        <td>@xzdal.CalcCount($"userid={user.id} and createtime between '{datestr}' and '{mingtian}'")</td>
+                        <td>@all_buy</td>
+                        <td>@all_zj</td>
+                        <td>@yinkui.ToString("f2")</td>
+                        <td>@xzdal.CalcCount($"userid={user.id} and iszj=2 and createtime between '{datestr}' and '{mingtian}'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(zjmoney)", $"userid={user.id} and iszj=2 and createtime between '{datestr}' and '{mingtian}'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '专家版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '专家版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '大版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}  and createtime between '{datestr}' and '{mingtian}' and buycode like '大版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '小版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '小版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '单版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '单版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '双版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '双版%'")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    DateTime date;
+    if (!DateTime.TryParse(key, out date))
+    {
+        <span>传入参数错误！</span>
+    }
+    else
+    {
+        string datestr = date.ToString("yyyy-MM-dd");
+        string mingtian = date.AddDays(1).ToString("yyyy-MM-dd"); //明天的日期
+
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">@datestr</li>
+            </ul>
+        </div>
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>用户ID</th>
+                    <th>用户名</th>
+                    <th>跟单次数</th>
+                    <th>跟单金额</th>
+                    <th>中奖金额（含特殊号返55%）</th>
+                    <th>盈亏</th>
+                    <th>中特殊号期数</th>
+                    <th>特殊号返还金额</th>
+                    <th>专家版次数</th>
+                    <th>专家版金额</th>
+                    <th>大版次数</th>
+                    <th>大版金额</th>
+                    <th>小版次数</th>
+                    <th>小版金额</th>
+                    <th>单版次数</th>
+                    <th>单版金额</th>
+                    <th>双版次数</th>
+                    <th>双版金额</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in list)
+                {
+                    double all_buy = xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id} and createtime between '{datestr}' and '{mingtian}'");
+                    double all_zj = xzdal.GetOneFiled_double("sum(zjmoney)", $"userid={user.id} and createtime between '{datestr}' and '{mingtian}'");
+                    double yinkui = all_buy - all_zj;
+                    <tr>
+                        <td>@user.id</td>
+                        <td>@user.username</td>
+                        <td>@xzdal.CalcCount($"userid={user.id} and createtime between '{datestr}' and '{mingtian}'")</td>
+                        <td>@all_buy</td>
+                        <td>@all_zj</td>
+                        <td>@yinkui.ToString("f2")</td>
+                        <td>@xzdal.CalcCount($"userid={user.id} and iszj=2 and createtime between '{datestr}' and '{mingtian}'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(zjmoney)", $"userid={user.id} and iszj=2 and createtime between '{datestr}' and '{mingtian}'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '专家版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '专家版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '大版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}  and createtime between '{datestr}' and '{mingtian}' and buycode like '大版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '小版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '小版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '单版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '单版%'")</td>
+
+                        <td>@xzdal.CalcCount($"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '双版%'")</td>
+                        <td>@xzdal.GetOneFiled_double("sum(buymoney)", $"userid={user.id}   and createtime between '{datestr}' and '{mingtian}' and buycode like '双版%'")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+<script>
+    /*日期选择控件设置*/
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#search_date' //指定元素
+        });
+    });
+
+    function showone() {
+        layui.use('layer', function () {
+            var date = $('#search_date').val();
+            if (date == '') {
+                alert('请先选择需要查询的日期！');
+                return false;
+            }
+            var url = "/adnn1n/userinfo/showmx?key=" + date + "&pwd3=@Request["pwd3"]";
+            window.open(url);
+        })
+
+    }
+</script>

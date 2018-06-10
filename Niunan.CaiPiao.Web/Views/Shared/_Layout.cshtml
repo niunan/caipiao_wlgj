@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telphone=no, email=no">
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>万利国际娱乐</title>
+    <link rel="stylesheet" href="/skin/17/core.css">
+    <script type="text/javascript" src="/skin/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/skin/main/onload.js?version=20160420"></script>
+    <script type="text/javascript" src="/skin/main/reglogin.js"></script>
+    <script type="text/javascript" src="/js/guest.js"></script>
+    <script type="text/javascript" src="/yoy/js/global.js"></script>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/layui/layui.js"></script>
+
+    @*<script type="text/javascript">browserRedirect();</script>*@
+</head>
+
+<body>
+    <div class="header">
+        <div class="container clearfix">
+            <div class="logo1">
+                <a href="/">
+                    <img src="/skin/17/logo1.png" width="300" height="100" />
+                </a>
+            </div>
+            <div class="logo2"></div>
+            <div class="menu">
+                <ul class="clearfix">
+                    <li class="lan-change clearfix">
+                        <a class="cn" href="javascript:void(0);"></a>
+                        <a class="hk" href="javascript:void(0);"></a>
+                        <a class="us" href="javascript:void(0);"></a>
+                    </li>
+                    <li class="nowtime">美东时间：<span id="nowTime">2018-04-10 04:23:32</span></li>
+                    <li class="links clearfix"><a href="" target="_blank">开奖直播</a><a target="_blank" href="http://api.pop800.com/chat/345220">在线客服</a></li>
+                </ul>
+            </div>
+            <div class="user-box">
+                <div class="login-box">
+                    <form action="/user/loginedto" method="post" onajax="userBeforeLoginto" enter="true" call="userLoginto" target="ajax">
+                        <ul class="clearfix">
+                            <li class="l_usn">
+                                <i></i>
+                                <input placeholder="帐号" name="username" id="userName" maxlength="15" tabindex="1" type="text">
+                            </li>
+                            <li class="l_pwd">
+                                <i></i>
+                                <input placeholder="密码" name="password" id="password" maxlength="15" tabindex="2" type="password">
+                            </li>
+                            <li class="l_auth">
+                                <i></i>
+                                <input placeholder="验证码" name="vcode" id="vcode" maxlength="4" tabindex="3" type="text">
+                                <img alt="验证码" src="/img/yzm.png" title="看不清楚，点我换图" onclick="this.src='/user/vcode/'+(new Date()).getTime()" style="position: absolute; width:47px; height:26px;left: 99px;top: 0px;cursor: pointer;">
+                            </li>
+                            <li class="ctrl">
+                                <input value="立即登陆" type="submit">
+                                <a href="javascript:guestLogin();" class="try">立即试玩</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="reg-box">
+                    <a href="reg.php"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav" id="nav">
+        <div class="list">
+            <ul class="clearfix">
+                <li class="">
+                    <a href="/">首 页<br><span>Home</span></a>
+                </li>
+                <li class="">
+                    <a href="/Reg/Index">开户注册<br><span>Register</span></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">彩票游戏<br><span>Lottery</span></a>
+                    <div class="gamelist hide" id="gamelist">
+                        <a href="/pk10/index">
+                            <p><img src="/skin/17/icon_pk10.png" alt=""></p>
+                            <span>北京pk拾</span>
+                        </a>
+                        <!--<a href="javascript:void(0);">
+                            <p><img src="/skin/17/icon_xyft.png" alt=""></p>
+                            <span>幸运飞艇</span>
+                        </a>-->
+                        <a href="javascript:void(0);">
+                            <p><img src="/skin/17/icon_lhc.png" alt=""></p>
+                            <span>香港六合彩</span>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <p><img src="/skin/17/icon_ssc.png" alt=""></p>
+                            <span>重庆时时彩</span>
+                        </a>
+                        <!-- <a href="javascript:void(0);">
+                             <p><img src="/skin/17/icon_xync.png" alt=""></p>
+                             <span>幸运农场</span>
+                         </a>-->
+                        <!-- <a href="javascript:void(0);">
+                             <p><img src="/skin/17/icon_jsk3.png" alt=""></p>
+                             <span>江苏骰宝</span>
+                         </a>-->
+                        <!--  <a href="javascript:void(0);">
+                              <p><img src="/skin/17/icon_pcdd.png" alt=""></p>
+                              <span>pc蛋蛋</span>
+                          </a>
+                          <a href="javascript:void(0);">
+                              <p><img src="/skin/17/icon_klsf.png" alt=""></p>
+                              <span>广东快乐十分</span>
+                          </a>-->
+                        <a href="javascript:void(0);">
+                            <p><img src="/skin/17/icon_gd11x5.png" alt=""></p>
+                            <span>广东11选5</span>
+                        </a>
+                        <!-- <a href="javascript:void(0);">
+                             <p><img src="/skin/17/icon_kl8.png" alt=""></p>
+                             <span>北京快乐8</span>
+                         </a>-->
+                    </div>
+                </li>
+                <li>
+                    <a href="/news/onepage?cabh=03">代理加盟<br><span>Agent</span></a>
+                </li>
+                <li>
+                    <a href="/news/onepage?cabh=04">存取帮助<br><span>Deposit</span></a>
+                </li>
+                <li>
+                    <a href="/news/onepage?cabh=07">优惠活动<br><span>Promotions</span></a>
+                </li>
+                <li>
+                    <a href="/news/onepage?cabh=08">APP下载<br><span>APP Download</span></a>
+                </li>
+                <li>
+                    <a  href="/news/onepage?cabh=09">在线客服<br><span>OnlineService</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="roof"></div>
+    </div>
+    @RenderBody()
+    <div class="footer">
+        <div class="container">
+            <div class="license-show">
+                <ul class="clearfix">
+                    <li><img src="/skin/17/license1.png" alt=""></li>
+                    <li><img src="/skin/17/license2.png" alt=""></li>
+                    <li><img src="/skin/17/license3.png" alt=""></li>
+                    <li><img src="/skin/17/license4.png" alt=""></li>
+                </ul>
+            </div>
+            <div class="other-show">
+                <ul class="clearfix">
+                    <li>
+                        <p class="tit">
+                            关于我们
+                        </p>
+                        <p>
+                            万利国际娱乐网成立于2011年,专业经营各种博彩业务，公司现已推出高频彩现金投注网。主营北京赛车pk10、幸运飞艇、重庆时时彩、广东快乐十分、幸运农场 、香港六合彩等在线娱乐项目。
+                        </p>
+                    </li>
+                    <li>
+                        <p class="tit">支付平台</p>
+                        <p><img src="/skin/17/bg_pay.png" alt=""></p>
+                    </li>
+                    <li class="last">
+                        <p class="tit">博彩优势</p>
+                        <p>
+                            <span class="lock"><i></i>先进的加密技术</span>
+                            <span class="save"><i></i>高赔率游戏</span>
+                            <span class="bank"><i></i>安全快捷的存款方式</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="links">
+                <a href="At3.php">存款帮助</a>
+                <span>I</span>
+                <a href="At7.php">取款帮助</a>
+                <span>I</span>
+                <a href="At2.php">常见问题</a>
+                <span>I</span>
+                <a href="At8.php">联盟方案</a>
+                <span>I</span>
+                <a href="At4.php">联盟协议</a>
+                <span>I</span>
+                <a href="At1.php">关于我们</a>
+                <span>I</span>
+                <a href="At9.php">联系我们</a>
+                <span>I</span>
+                <a href="At6.php">最新优惠</a>
+            </div>
+            <div class="cominf">
+                万利国际所提供的产品和服务，是由菲律宾政府卡格扬河经济特区 First Cagayan leisure and Resort Corporation.
+                <br>授权和监管 Copyright © 万利国际 Reserved
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var _isLocal = false;
+    </script>
+ 
+    <script src="/skin/17/unslider.min.js"></script>
+    <script src="/skin/17/core.js"></script>
+    <style type="text/css">
+        #float_r_ight {
+            display: none;
+            width: 41px;
+            height: 293px;
+            position: absolute;
+            right: 0;
+            top: 15px;
+            z-index: 1100;
+            overflow: hidden;
+        }
+
+        .float_right_l {
+            padding-top: 50px;
+            width: 161px;
+            height: 241px;
+            position: absolute;
+            padding-left: 10px;
+            right: -171px;
+            top: 0px;
+            z-index: 1099;
+            background: url('/yoy/images/kf/float_bg.png') no-repeat;
+        }
+
+        #float_right_log {
+            cursor: pointer;
+            width: 41px;
+            height: 275px;
+            position: absolute;
+            right: 171px;
+            top: 12px;
+            z-index: 1100;
+            background-image: url('/yoy/images/kf/float_click.png');
+        }
+
+        .float_right_l span {
+            position: relative;
+            padding-left: 5px;
+        }
+
+        #right_img1, #right_img1 a, {
+            width: 193px;
+            height: 68px;
+        }
+
+        #right_img2, #right_img3,
+        #right_img2 a, #right_img3 a {
+            width: 193px;
+            height: 48px;
+        }
+    </style>
+    <div id="float_r_ight" style="display: block; top: 197px;">
+        <div class="float_right_l" id="float_right_l">
+            <div id="float_right_log"></div>
+            <span id="right_img1"><a target="_blank" href="http://api.pop800.com/chat/345220" onclick=""><img src="/yoy/images/kf/1.png"></a></span>
+            <span id="right_img2"><a href="/reg.php"><img src="/yoy/images/kf/2.png"></a></span>
+            <span id="right_img3"><a href="javascript:void(0);" onclick="guestLogin();"><img src="/yoy/images/kf/3.png"></a></span>
+
+
+        </div>
+    </div>
+
+    <script>
+        var float_box = document.getElementById("float_r_ight"),
+            float_box_list = $('#float_right_l'),
+            float_box_log = $("#float_right_log"), fin, fout, fstatus = 'close';
+        var flaot_box_in = function () {
+            fstatus = 'open';
+            float_box_list.stop().animate({ right: 0 }, 300);
+            $(float_box).stop().animate({ width: 246 }, 300);
+            float_box_log.css('backgroundPosition', '100% 0');
+        }
+        var flaot_box_out = function () {
+            fstatus = 'close';
+            float_box_list.stop().animate({ right: -171 }, 300);
+            $(float_box).stop().animate({ width: 41 }, 300);
+            float_box_log.css('backgroundPosition', '0 100%');
+        }
+
+        window.onload = window.onresize = window.onscroll = function () {
+            var iScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+            setTimeout(function () {
+                clearInterval(float_box.timer);
+                var iTop = parseInt((document.documentElement.clientHeight - float_box.offsetHeight) / 2) + iScrollTop;
+
+                float_box.timer = setInterval(function () {
+                    var iSpeed = (iTop - float_box.offsetTop) / 8;
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                    float_box.offsetTop == iTop ? clearInterval(float_box.timer) : (float_box.style.top = float_box.offsetTop + iSpeed + "px");
+                }, 30);
+            }, 50);
+            float_box.style.display = "block";
+        };
+        float_box_list.hover(
+            function () {
+                clearTimeout(fin);
+                fout = setTimeout(flaot_box_in, 100);
+            }, function () {
+                clearTimeout(fout);
+                fin = setTimeout(flaot_box_out, 100);
+            }
+        );
+        float_box_list.click(function () {
+            if (fstatus == 'close') {
+                flaot_box_in();
+            } else {
+                flaot_box_out();
+            }
+        });
+    </script>
+
+</body>
+</html>

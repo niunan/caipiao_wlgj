@@ -1,0 +1,1537 @@
+﻿
+@{
+    ViewData["Title"] = "北京PK拾";
+}
+<link href="~/css/play.css" rel="stylesheet" />
+<link href="~/css/style-index.css" rel="stylesheet" />
+<style>
+    /*弹出的框里牛腩表格样式*/
+    .pop_niunantab {
+        margin: 10px;
+        width:95%;
+    }
+
+        .pop_niunantab td {
+            padding: 5px;
+        }
+
+    #div_jiangjin {
+        color: #df3937;
+    }
+
+    #div_fandian {
+        color: #df3937;
+    }
+</style>
+<div class="page-container" style="margin: 0 auto;  background-color:darkred;">
+    <div class="page-content-wrapper">
+        <div class="container">
+            <div class="center-side">
+                <div class="top-wrapper">
+                    <div class="lottery-info">
+                        <div class="icon icon-ssc"></div>
+                        <div class="name">北京PK10</div>
+                    </div>
+                    <!-- 投注信息 -->
+                    <div class="lottery-open-info">
+                        <div class="issue">
+                            第 <span id="span_currentqihao">180501046</span> 期<br>离投注截止还有
+                            <input id="hfendtime" value="2018-05-01 13:39:50" type="hidden">
+                        </div>
+                        <div class="surplus-time" data-field="global-surplus-time1">
+                            <div id="hh" class="hh">00</div>
+                            <div id="mm" class="mm">02</div>
+                            <div id="ss" class="ss">05</div>
+                        </div>
+                    </div>
+                    <!--开奖信息-->
+                    <div class="lottery-open-code">
+                        <div class="issue">
+                            第 <span id="span_prevqihao">180501045</span> 期<br>开奖号码
+                        </div>
+                        <div class="code">
+                            <div class="list">
+                                <div id="ball1" class="ball">-</div>
+                                <div id="ball2" class="ball">-</div>
+                                <div id="ball3" class="ball">-</div>
+                                <div id="ball4" class="ball">-</div>
+                                <div id="ball5" class="ball">-</div>
+                                <div id="ball6" class="ball">-</div>
+                                <div id="ball7" class="ball">-</div>
+                                <div id="ball8" class="ball">-</div>
+                                <div id="ball9" class="ball">-</div>
+                                <div id="ball10" class="ball">-</div>
+                            </div>
+                        </div>
+                        <div class="tools">
+                            <a href="trend.html"><i class="fa fa-line-chart"></i> 号码走势</a>
+                            <a data-command="history"><i class="fa fa-list"></i> 开奖历史</a>
+                        </div>
+                    </div>
+                    <!--开奖历史-->
+                    <div class="lottery-open-list">
+                        <div class="head">
+                            <div class="issue">期号</div>
+                            <div class="code">开奖号码</div>
+                        </div>
+                        <div data-init="scroll" class="list ps-container ps-theme-default" data-ps-id="596b4c9c-ea3b-1bbf-f70c-4eba836f1920">
+                            <div class="item">
+                                <div class="issue">20170223-027</div>
+                                <div class="code">5,0,2,1,2</div>
+                            </div>
+                            <div class="item">
+                                <div class="issue">20170223-026</div>
+                                <div class="code">1,5,2,9,5</div>
+                            </div>
+                            <div class="item">
+                                <div class="issue">20170223-025</div>
+                                <div class="code">8,4,1,3,3</div>
+                            </div>
+                            <div class="item">
+                                <div class="issue">20170223-024</div>
+                                <div class="code">6,6,3,4,3</div>
+                            </div>
+                            <div class="item">
+                                <div class="issue">20170223-023</div>
+                                <div class="code">1,1,9,0,2</div>
+                            </div>
+                            <div class="item">
+                                <div class="issue">20170223-022</div>
+                                <div class="code">1,1,0,8,4</div>
+                            </div>
+                            <div class="item">
+                                <div class="issue">20170223-021</div>
+                                <div class="code">1,1,4,6,8</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="play-wrapper">
+                    <!--选号区域-->
+                    <div class="lottery-play">
+                        <div class="play-groups">
+                            <div class="list">
+                                <div class="item selected">猜冠军</div>
+                                <div class="item">猜前二</div>
+                                <div class="item">猜前三</div>
+                                <div class="item">猜前四</div>
+                                <div class="item">猜前五</div>
+                                <div class="item">猜前六</div>
+                                <div class="item">定位胆</div>
+                                <div class="item">大小单双</div>
+                                <div class="item">龙虎</div>
+                                <div class="item ">和值</div>
+                            </div>
+                        </div>
+                        <div class="play-list">
+                            <div class="row" style="display: table;">
+                                <div class="label">猜冠军</div>
+                                <div class="column selected" title="20000101|1000000000" data-method="sxzhixfsh">猜冠军</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">猜前二</div>
+                                <div class="column selected" title="20000202|1100000000" data-method="sxzhixfsh">复式</div>
+                                <div class="column" title="20000201|1100000000" data-method="sxzhixdsh">单式</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">猜前三</div>
+                                <div class="column selected" title="20000302|1110000000" data-method="sxzhixfsh">复式</div>
+                                <div class="column" title="20000301|1110000000" data-method="sxzhixdsh">单式</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">猜前四</div>
+                                <div class="column selected" title="20000402|1111000000" data-method="sxzhixfsh">复式</div>
+                                <div class="column" title="20000401|1111000000" data-method="sxzhixdsh">单式</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">猜前五</div>
+                                <div class="column selected" title="20000502|1111100000" data-method="sxzhixfsh">复式</div>
+                                <div class="column" title="20000501|1111100000" data-method="sxzhixdsh">单式</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">猜前六</div>
+                                <div class="column selected" title="20000602|1111110000" data-method="sxzhixfsh">复式</div>
+                                <div class="column" title="20000601|1111110000" data-method="sxzhixdsh">单式</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">定位胆</div>
+                                <div class="column selected" title="20000701|1111100000" data-method="sxzhixfsh">1~5定位胆</div>
+                                <div class="column" title="20000702|1111100000" data-method="sxzhixfsh">6~10定位胆</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">大小单双</div>
+                                <div class="column" title="20000801|1000000000" data-method="sxzhixfsh">冠军</div>
+                                <div class="column" title="20000802|0100000000" data-method="sxzhixfsh">亚军</div>
+                                <div class="column selected" title="20000803|0010000000" data-method="sxzhixfsh">季军</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">龙虎</div>
+                                <div class="column" title="20000901|1000000000" data-method="sxzhixfsh">冠军龙虎</div>
+                                <div class="column" title="20000902|0100000000" data-method="sxzhixfsh">亚军龙虎</div>
+                                <div class="column" title="20000903|0010000000" data-method="sxzhixfsh">季军龙虎</div>
+                                <div class="column" title="20000904|0001000000" data-method="sxzhixfsh">第四名龙虎</div>
+                                <div class="column selected" title="20000905|0000100000" data-method="sxzhixfsh">第五名龙虎</div>
+                            </div>
+                            <div class="row" style="display: none;">
+                                <div class="label">和值</div>
+                                <div class="column selected" title="20001001|1100000000" data-method="sxzhixfsh">冠亚和值</div>
+                                <div class="column" title="20001002|0000110000" data-method="sxzhixfsh">中二和值</div>
+                                <div class="column" title="20001003|0000000011" data-method="sxzhixfsh">后二和值</div>
+                                <div class="column" title="20001004|1110000000" data-method="sxzhixfsh">前三和值</div>
+                                <div class="column" title="20001005|0000000111" data-method="sxzhixfsh">后三和值</div>
+                            </div>
+                        </div>
+                        <div class="play-section">
+                            <div class="play-help">
+                                <div class="tips">
+                                    <div style="float:left;">玩法提示：从个、十、百位各选一个号码组成一注。</div>
+                                    <a style="float:left;">[帮助]</a>
+                                    <a style="float:left;">[案例]</a>
+                                </div>
+
+                                <div class="help"><i class="arrow"></i>从百位、十位、个位中选择一个3位数号码组成一注，所选号码与开奖号码后3位相同，且顺序一致，即为中奖。</div>
+                                <div class="example"><i class="arrow"></i>投注方案：345；<br>投注方案：345；<br>即中后三直选一等奖</div>
+                            </div>
+                            <div class="adjust-bonus">
+                                <div class="text">奖金调节</div>
+                                <div class="slider-wrapper">
+                                    <div class="slider noUi-target noUi-ltr noUi-horizontal noUi-connect">
+                                        <div class="noUi-base">
+                                            <div class="noUi-origin noUi-background noUi-stacking" style="left: 100%;">
+                                                <div class="noUi-handle noUi-handle-lower"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text"><span data-field="code">1950</span>/<span data-field="point">0</span>%</div>
+                            </div>
+                        </div>
+
+                        <div id="xiazhu-20000101" class="play-area" style="display: table;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000202" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">亚军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000201" class="play-area" style="display:none">
+                            <div class="row">
+                                <textarea placeholder="一行为一注，输入示例如：01 02" style="width:960px;height:228px;border:1px #20b4f2 solid "></textarea>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000302" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">亚军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">季军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000301" class="play-area" style="display:none">
+                            <div class="row">
+                                <textarea placeholder="一行为一注，输入示例如：01 02 03" style="width:960px;height:228px;border:1px #20b4f2 solid "></textarea>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000402" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">亚军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">季军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第四</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000401" class="play-area" style="display:none">
+                            <div class="row">
+                                <textarea placeholder="一行为一注，输入示例如：01 02 03 04" style="width:960px;height:228px;border:1px #20b4f2 solid "></textarea>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000502" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">亚军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">季军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第四</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第五</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000501" class="play-area" style="display:none">
+                            <div class="row">
+                                <textarea placeholder="一行为一注，输入示例如：01 02 03 04 05" style="width:960px;height:228px;border:1px #20b4f2 solid "></textarea>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000602" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">亚军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">季军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第四</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第五</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第六</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000601" class="play-area" style="display:none">
+                            <div class="row">
+                                <textarea placeholder="一行为一注， 输入示例如：01 02 03 04 05 06" style="width:960px;height:228px;border:1px #20b4f2 solid "></textarea>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000701" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">冠军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">亚军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">季军</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第四</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第五</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000702" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">第六</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第七</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第八</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第九</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="label">第十</div>
+                                <div class="balls">
+                                    <div class="item">01</div>
+                                    <div class="item">02</div>
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                </div>
+                                <div class="tools">
+                                    <div data-command="all" class="item">全</div>
+                                    <div data-command="big" class="item">大</div>
+                                    <div data-command="small" class="item">小</div>
+                                    <div data-command="single" class="item">单</div>
+                                    <div data-command="double" class="item">双</div>
+                                    <div data-command="clean" class="item">清</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000801" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">大</div>
+                                    <div class="item">小</div>
+                                    <div class="item">单</div>
+                                    <div class="item">双</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000802" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">大</div>
+                                    <div class="item">小</div>
+                                    <div class="item">单</div>
+                                    <div class="item">双</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000803" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">大</div>
+                                    <div class="item">小</div>
+                                    <div class="item">单</div>
+                                    <div class="item">双</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000901" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">龙</div>
+                                    <div class="item">虎</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000902" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">龙</div>
+                                    <div class="item">虎</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000903" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">龙</div>
+                                    <div class="item">虎</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000904" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">龙</div>
+                                    <div class="item">虎</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20000905" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">龙</div>
+                                    <div class="item">虎</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20001001" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                    <div class="item">11</div>
+                                    <div class="item">12</div>
+                                    <div class="item">13</div>
+                                    <div class="item">14</div>
+                                    <div class="item">15</div>
+                                    <div class="item">16</div>
+                                    <div class="item">17</div>
+                                    <div class="item">18</div>
+                                    <div class="item">19</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20001002" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                    <div class="item">11</div>
+                                    <div class="item">12</div>
+                                    <div class="item">13</div>
+                                    <div class="item">14</div>
+                                    <div class="item">15</div>
+                                    <div class="item">16</div>
+                                    <div class="item">17</div>
+                                    <div class="item">18</div>
+                                    <div class="item">19</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20001003" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">03</div>
+                                    <div class="item">04</div>
+                                    <div class="item">05</div>
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                    <div class="item">11</div>
+                                    <div class="item">12</div>
+                                    <div class="item">13</div>
+                                    <div class="item">14</div>
+                                    <div class="item">15</div>
+                                    <div class="item">16</div>
+                                    <div class="item">17</div>
+                                    <div class="item">18</div>
+                                    <div class="item">19</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20001004" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                    <div class="item">11</div>
+                                    <div class="item">12</div>
+                                    <div class="item">13</div>
+                                    <div class="item">14</div>
+                                    <div class="item">15</div>
+                                    <div class="item">16</div>
+                                    <div class="item">17</div>
+                                    <div class="item">18</div>
+                                    <div class="item">19</div>
+                                    <div class="item">20</div>
+                                    <div class="item">21</div>
+                                    <div class="item">22</div>
+                                    <div class="item">23</div>
+                                    <div class="item">24</div>
+                                    <div class="item">25</div>
+                                    <div class="item">26</div>
+                                    <div class="item">27</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="xiazhu-20001005" class="play-area" style="display: none;">
+                            <div class="row">
+                                <div class="label">&nbsp;</div>
+                                <div class="balls">
+                                    <div class="item">06</div>
+                                    <div class="item">07</div>
+                                    <div class="item">08</div>
+                                    <div class="item">09</div>
+                                    <div class="item">10</div>
+                                    <div class="item">11</div>
+                                    <div class="item">12</div>
+                                    <div class="item">13</div>
+                                    <div class="item">14</div>
+                                    <div class="item">15</div>
+                                    <div class="item">16</div>
+                                    <div class="item">17</div>
+                                    <div class="item">18</div>
+                                    <div class="item">19</div>
+                                    <div class="item">20</div>
+                                    <div class="item">21</div>
+                                    <div class="item">22</div>
+                                    <div class="item">23</div>
+                                    <div class="item">24</div>
+                                    <div class="item">25</div>
+                                    <div class="item">26</div>
+                                    <div class="item">27</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="play-options">
+                            <div class="text">输入倍数</div>
+                            <div class="multiple">
+                                <div id="btnjian" class="sub">-</div>
+                                <input id="beishu" value="1" type="text">
+                                <div id="btnjia" class="add">+</div>
+                            </div>
+                            <div class="text">模式</div>
+                            <div class="model">
+                                <div class="item selected" title="2">元</div>
+                                <div class="item" title="0.2">角</div>
+                                <div class="item" title="0.02">分</div>
+                            </div>
+
+                            <!--滑块设置奖金和返点-->
+                            <div class="text">中奖金额：￥<span id="div_jiangjin" class="text">1960.00</span></div>
+                            @*<div class="text ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="width:380px; margin:0 10px;" id="slider-range-min">
+                                    <div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 100%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 100%;"></span>
+                                </div>
+                                <div class="text">返点：<span id="div_fandian" class="text">0</span>%</div>*@
+                        </div>
+                        <div class="play-actions">
+                            <div data-command="add-list" class="button" onclick="add_haoma()">添加号码</div>
+                        </div>
+                    </div>
+                    <!--号码列表-->
+                    <div class="lottery-record">
+                        <div data-init="scroll" class="list ps-container ps-theme-default" data-ps-id="c95dafa1-c2a2-4b0d-183b-c8b0b2b3be3e">
+                        </div>
+                        <div class="btn-gp">
+                            <div class="button" data-command="clear" onclick="clear_haoma()">清空列表</div>
+                            <div class="submit" data-command="submit" onclick="touzhu()">马上投注</div>
+                            <!--采种ID-->
+                            <input id="czid" value="23" type="hidden">
+                            <!--玩法ID-->
+                            <input id="wfid" value="20000101" type="hidden">
+                            <!--位置-->
+                            <input id="position" value="1100000000" type="hidden">
+                            <input id="Hd_CurrentFandian" value="0" type="hidden">
+                            <input id="Hd_CurrentMoshi" value="1960" type="hidden">
+                            <input id="Hd_BaseMoshi" value="1960" type="hidden">
+                            <input id="Hd_BaseFanDian" value="0" type="hidden">
+                            <input id="Hd_MaxMoshi" value="1960" type="hidden">
+                            <input id="Hd_MinMoshi" value="1900" type="hidden">
+                            <input id="Hd_wanfa" value="[20000000]_0.01_1|[20000101]_0.01_1|[20000201]_0.09_1|[20000202]_0.09_1|[20000301]_0.72_1|[20000302]_0.72_1|[20000401]_5.02_1|[20000402]_5.02_1|[20000501]_30.10_1|[20000502]_30.10_1|[20000601]_150.50_1|[20000602]_150.50_1|[20000701]_0.01_1|[20000702]_0.01_1|[20000801]_0.00_1|[20000802]_0.00_1|[20000803]_0.00_1|[20000901]_0.00_1|[20000902]_0.00_1|[20000903]_0.00_1|[20000904]_0.00_1|[20000905]_0.00_1|[20001001]_1.00_1|[20001002]_1.00_1|[20001003]_1.00_1|[20001004]_1.00_1|[20001005]_1.00_1" type="hidden">
+                        </div>
+                    </div>
+                    <!--订单记录-->
+                    <div class="lottery-order">
+                        <div class="tab">
+                            <div onclick="gethistory()" class="item active">历史下注记录</div>
+                        </div>
+                        <div class="content">
+                            <div data-name="order" class="item active" data-init="true">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <td width="10%">彩种</td>
+                                            <td>玩法</td>
+                                            <td width="10%">期号</td>
+                                            <td>下注号</td>
+                                            <td>注数</td>
+                                            <td>金额</td>
+                                            <td>开奖号</td>
+                                            <td>中奖金额</td>
+                                            <td>盈亏</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tab_history"></tbody>
+                                </table>
+                                <div class="page-list">
+                                    <div class="easy-page"></div>
+                                </div>
+                            </div>
+                            <div data-name="chase" class="item">
+                                <table class="table table-bordered padding-small">
+                                    <thead>
+                                        <tr>
+                                            <td width="12%">订单号</td>
+                                            <td width="10%">彩种</td>
+                                            <td>玩法</td>
+                                            <td width="10%">开始期号</td>
+                                            <td width="120px">已追/总期号</td>
+                                            <td width="100px">总金额</td>
+                                            <td width="100px">总奖金</td>
+                                            <td width="100px">状态</td>
+                                            <td width="100px">操作</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <div class="page-list">
+                                    <div class="easy-page"></div>
+                                </div>
+                            </div>
+                            <div data-name="report" class="item">
+                                <table class="table table-bordered padding-small">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-center" width="10%">日期</td>
+                                            <td class="text-center" width="10%">充值</td>
+                                            <td class="text-center" width="10%">提现</td>
+                                            <td class="text-center" width="10%">消费</td>
+                                            <td class="text-center" width="10%">派奖</td>
+                                            <td class="text-center" width="10%">返点</td>
+                                            <td class="text-center" width="10%">活动</td>
+                                            <td class="text-center" width="10%">盈利</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <div class="page-list">
+                                    <div class="easy-page"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/layui/layui.js"></script>
+<script src="/js/GetWanFaName.js"></script>
+<script src="/js/GetXiaZhuCode.js"></script>
+<script src="/js/cp.zhushu.js"></script>
+<script src="/js/common.js"></script>
+
+<script>
+    var curMS = parseFloat($(".model").find(".selected").attr("title"));
+    var baseMoshi = 0;
+    baseMoshi = $("#Hd_CurrentMoshi").val();
+    currentFandian = parseFloat($("#Hd_CurrentFandian").val());
+    $("#div_jiangjin").html(baseMoshi);
+    $("#div_fandian").html(currentFandian);
+
+    initJiangjin();
+
+    //初始化玩法奖金
+    function initJiangjin() {
+        var sp = getWanFaInfo();
+        var beishu = 0;
+        beishu = $("#beishu").val();
+        if (sp.length == 3) {
+            var jj = 0.0;
+            console.log("sp: " + sp);
+            if (sp[2] == "1") {
+                var currentMoshi = 0;
+                currentMoshi = parseInt($("#Hd_CurrentMoshi").val());
+                jj = FormatNumber(currentMoshi * parseFloat(sp[1]) * parseFloat(beishu) * (curMS / 2), 2);
+                //   console.log("currentMoshi:,  " + currentMoshi + "sp[1]: " + sp[1] + ", beishu: " + beishu + ",curMS:" + curMS + " , JJ:" + jj);
+            }
+            else {
+                jj = FormatNumber(parseFloat(sp[1]) * parseInt(beishu) * (curMS / 2), 2);
+                //  console.log("玩法奖金基数不为1： " + "sp[1]: " + sp[1] + ", beishu: " + beishu + ",curMS:" + curMS + " , JJ:" + jj);
+            }
+            $("#div_jiangjin").text(jj);
+        }
+        else {
+            $("#div_jiangjin").text("0.00");
+        }
+    }
+
+    //获取玩法信息,返回数组：玩法ID,奖金基数,模式是否可调 , wanfa表中的数据
+    function getWanFaInfo() {
+        var wfhtml = $("#Hd_wanfa").val();
+        var currentWfid = $("#wfid").val();
+        eval("var reg=/\\[" + currentWfid + "\\]_\\d+\\.\\d+_\\d{1}/");
+        var rs = wfhtml.match(reg);
+        var sp = new Array(3);
+        if (rs != null) {
+            sp = rs[0].split('_');
+        }
+        return sp;
+    }
+
+
+
+    /*点击一级玩法*/
+    $('.play-groups .list .item').click(function () {
+        var index = $(this).index();
+        $('.play-groups .list .item').removeClass('selected');
+        $(this).addClass('selected');
+
+        $('.play-list .row').hide();
+        $('.play-list .row').eq(index).show();
+        //二级玩法第一个选择中
+        $('.play-list .row').eq(index).find(".column").removeClass("selected");
+        $('.play-list .row').eq(index).find(".column:eq(0)").addClass("selected");
+        //相应的玩法区域显示出来
+        $('.play-area').hide();
+        var arr = $('.play-list .row').eq(index).find(".column:eq(0)").attr("title").split('|');
+        var wfid = arr[0];
+        var position = arr[1];
+        $('#xiazhu-' + wfid).show();
+        //设置玩法ID隐藏域
+        $('#wfid').val(wfid);
+        $('#position').val(position);
+
+        initJiangjin();
+    })
+
+    /*点击二级玩法*/
+    $('.play-list .row .column').click(function () {
+        $(this).parent().find(".column").removeClass("selected");
+        $(this).addClass("selected");
+
+
+        $('.play-area').hide();
+        var arr = $(this).attr("title").split('|');
+        var wfid = arr[0];
+        var position = arr[1];
+
+        $('#xiazhu-' + wfid).show();
+
+        //设置玩法ID隐藏域
+        $('#wfid').val(wfid);
+        $('#position').val(position);
+
+        initJiangjin();
+    })
+
+    //元角分
+    $(".model .item").click(function () {
+        $('.model .item').removeClass('selected');
+        $(this).addClass('selected');
+        curMS = parseFloat($(this).attr("title"));
+
+        initJiangjin();
+    })
+
+    /*点下注号切换高亮状态*/
+    $(".balls .item").click(function () {
+        var v = $(this).attr("class");
+        if (v.indexOf('selected') > -1) {
+            $(this).removeClass('selected');
+        } else {
+            $(this).addClass('selected');
+        }
+    })
+
+    /*全大小单双清*/
+    $('.tools .item').click(function () {
+        var txt = $(this).text();
+        switch (txt) {
+            case "全":
+                $(this).parent().prev('.balls').find(".item").addClass('selected');
+                break;
+            case "大":
+                $(this).parent().prev('.balls').find(".item").each(function (i) {
+                    var val = $(this).text();
+                    if (parseInt(val) >= 5) { $(this).addClass('selected') }
+                });
+                break;
+            case "小":
+                $(this).parent().prev('.balls').find(".item").each(function (i) {
+                    var val = $(this).text();
+                    if (parseInt(val) < 5) { $(this).addClass('selected') }
+                });
+                break;
+            case "单":
+                $(this).parent().prev('.balls').find(".item:odd").addClass('selected');
+                break;
+            case "双":
+                $(this).parent().prev('.balls').find(".item:even").addClass('selected');
+                break;
+            case "清":
+                $(this).parent().prev('.balls').find(".item").removeClass('selected');
+                break;
+        }
+    })
+
+
+
+    /*取弹出来的内容HTML*/
+    function GetPopHtml() {
+        var totalprice = 0; //总金额
+        var html = '<table class="pop_niunantab">';
+        $('.lottery-record .list .item').each(function () {
+            var one_xiazhuhao = $.trim($(this).find('.text').text());
+            var one_zhushu = $(this).find('.nums').text();
+            var one_je = $(this).find('.money').text().replace('元', '')
+            totalprice += parseFloat(one_je);
+            html += '<tr><td>' + one_xiazhuhao + '</td><td>' + one_zhushu + '</td><td>' + one_je + '元</td></tr>';
+        })
+        html += '<tr><td>总金额：</td><td></td><td>' + totalprice + '元</td></tr>';
+        html += '</table>';
+        return html;
+    }
+
+    /*每隔1秒取倒计时*/
+    setTimeout("get_djs()", 1000);
+
+    function get_djs() {
+        var endtime = $('#hfendtime').val();
+        var url = "/Home/CalcDJS?endtime=" + endtime + "&t=" + new Date().valueOf();
+        //$.getJSON(url, function (json) {
+        //    $('#hh').html(json.hh);
+        //    $('#mm').html(json.mm);
+        //    $('#ss').html(json.ss);
+
+        //    //都是0了以后再重新取当前期和上一期
+        //    if (parseInt(json.hh) == 0 && parseInt(json.mm) == 0 && parseInt(json.ss) < 0) {
+        //        var url2 = "/ssc_cq/GetCurrentAndPrev?t=" + new Date().valueOf();
+        //        $.getJSON(url2, function (json2) {
+        //            $('#span_currentqihao').html(json2.current_qihao);
+        //            $('#hfendtime').val(json2.current_endtime);
+        //            $('#span_prevqihao').html(json2.prev_qihao);
+        //            $('#ball1').html('-');
+        //            $('#ball2').html('-');
+        //            $('#ball3').html('-');
+        //            $('#ball4').html('-');
+        //            $('#ball5').html('-');
+        //        })
+        //    }
+
+        //    setTimeout("get_djs()", 1000);
+        //});
+    }
+
+    /*倍数的加减按钮*/
+    $('#btnjian').click(function () {
+        var v = $('#beishu').val();
+        v = parseInt(v) - 1;
+        if (v < 1) {
+            v = 1;
+        }
+        $('#beishu').val(v);
+    })
+    $('#btnjia').click(function () {
+        var v = $('#beishu').val();
+        v = parseInt(v) + 1;
+        $('#beishu').val(v);
+    })
+
+    /*取历史投注记录*/
+    function gethistory() {
+        var url = "/buyrecorder/gethistory?t=" + new Date().valueOf();
+        //$.getJSON(url, function (data) {
+        //    if (data.code == 0) {
+        //        var html = '';
+        //        $.each(data.list, function (index, item) {
+        //            html += "<tr>";
+        //            html += "<td>" + item.caizhong + "</td>";
+        //            html += "<td>" + item.wanfa + "</td>";
+        //            html += "<td>" + item.qihao + "</td>";
+        //            html += "<td>" + item.buycode + "</td>";
+        //            html += "<td>" + item.zhushu + "</td>";
+        //            html += "<td>" + item.amount + "</td>";
+        //            html += "<td>" + item.winmoney + "</td>";
+        //            html += "<td>" + item.yinkui + "</td>";
+        //            html += "</tr>";
+        //        })
+        //        $('#tab_history').html(html);
+        //    }
+        //})
+    }
+
+    gethistory();
+</script>

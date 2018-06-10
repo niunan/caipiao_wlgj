@@ -1,0 +1,30 @@
+﻿@model Niunan.CaiPiao.Model.News
+@{
+    ViewData["Title"] = Model.title;
+}
+
+<div class="banner-about">
+    <div class="radio">
+        <div class="container">
+            <span>最新消息 / NEWS</span>
+            <marquee id="noticeDom" scrollamount="4" scrolldelay="100" direction="left" onmouseover="this.stop();" onmouseout="this.start();">全网第一最具公信力信誉平台！两面赔率1.99  定位赔率9.9  期期返水0.5%！集齐当红最热高频彩票一站式体验！玩法公平、规则公正、信誉公开！大额无忧！百万取款3分钟内火速到账！</marquee>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container clearfix">
+        @Html.Partial("_LeftNav")
+        <div class="content">
+            <div class="text">
+                <div class="tit">
+                    @Model.title
+                </div>
+                <div>
+                    @Html.Raw(Model.body)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
