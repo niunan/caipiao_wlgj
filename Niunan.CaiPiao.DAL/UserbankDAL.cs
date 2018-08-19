@@ -27,7 +27,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into userbank(");
             strSql.Append("createtime, userid, username, bankname, bankno, realname, remark, khh  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @userid, @username, @bankname, @bankno, @realname, @remark, @khh  ) returning id;"); 
+            strSql.Append("@createtime, @userid, @username, @bankname, @bankno, @realname, @remark, @khh  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

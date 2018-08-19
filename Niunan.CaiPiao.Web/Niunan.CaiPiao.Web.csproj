@@ -30,11 +30,15 @@
     <None Include="Areas\Adnn1n\Views\Login\Index.cshtml" />
     <None Include="Areas\Adnn1n\Views\News\Add.cshtml" />
     <None Include="Areas\Adnn1n\Views\News\Index.cshtml" />
+    <None Include="Areas\Adnn1n\Views\QiHaoInfo\Add.cshtml" />
+    <None Include="Areas\Adnn1n\Views\QiHaoInfo\Index.cshtml" />
     <None Include="Areas\Adnn1n\Views\Shared\_Layout.cshtml" />
     <None Include="Areas\Adnn1n\Views\UserInfo\Add.cshtml" />
     <None Include="Areas\Adnn1n\Views\UserInfo\Index.cshtml" />
     <None Include="Areas\Adnn1n\Views\UserInfo\ShowMX.cshtml" />
     <None Include="Areas\Adnn1n\Views\UserInfo\TJTuPu.cshtml" />
+    <None Include="Areas\Adnn1n\Views\WanFa\Add.cshtml" />
+    <None Include="Areas\Adnn1n\Views\WanFa\Index.cshtml" />
     <None Include="wwwroot\img\yzm.png" />
     <None Include="wwwroot\js\guest.js" />
     <None Include="wwwroot\kindeditor\kindeditor-all-min.js" />

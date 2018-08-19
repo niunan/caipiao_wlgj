@@ -1,0 +1,154 @@
+﻿@model Niunan.CaiPiao.Model.Wanfa
+@{
+    ViewBag.Title = Model.id == 0 ? "新增玩法" : "编辑玩法";
+}
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+<div style="color:red; font-size:18px;">
+    编辑需谨慎，最好请程序猿弄！！！
+</div>
+<form class="layui-form" action="">
+
+    <div class='layui-form'>
+
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>玩法名称</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.wfname, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>简称</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.shortname, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'>显示在手机版上的名称</div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>备注</label>
+            <div class='layui-input-block'>
+                @Html.TextBoxFor(a => a.remark, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>采种ID</label>
+            <div class='layui-input-inline'>
+                @Html.DropDownList("czid", new SelectList(ViewBag.czlist, "id", "czname", Model.czid))
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>基础金额</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.basemoney, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>组名称</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.groupname, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>倍率</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.peilv, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'>对包三边玩法设置无效</div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>是否停用</label>
+            <div class='layui-input-inline'>
+                @Html.RadioButtonFor(a => a.isshow, 0, new { title = "停用" })
+                @Html.RadioButtonFor(a => a.isshow, 1, new { title = "启用" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>大类</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.bigname, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'>编辑时请忽修改此处</div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>特殊号</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.tesu, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'>该玩法的特殊号，若没有请填入-1</div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>特殊号赔率</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.tesu_peilv, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'>中特殊号后返回的赔率，如不设置请填入-1，如设置为1.6, 下注100，中特殊号后返还 100 * 1.6</div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>特殊号返还金额</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.tesu_je, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'>中特殊号后返回的固定金额，如不设置请填入-1，如设置为0.01, 下注100，中特殊号后返还只返还0.01</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class='layui-form-label'>&nbsp;</label>
+            <div class="layui-input-inline">
+                <button id="btn1" class="layui-btn" lay-submit="" lay-filter="demo1">@ViewBag.Title</button>
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+
+</form>
+ 
+<script>
+var pop_index;
+ 
+
+        /*加载layui编辑器*/
+        layui.use(['form',  'layer','laydate','upload'], function () {
+            var form = layui.form;
+var laydate = layui.laydate;
+  var upload = layui.upload;
+  var layer = layui.layer;
+  var $ = layui.jquery;
+
+ 
+
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                var url = "/adnn1n/Wanfa/add";
+                var postdata = data.field;
+				//postdata.body = editor1.html();
+
+        $('#btn1').attr("class", "layui-btn layui-btn-disabled");
+            $('#btn1').attr("disabled", "disabled");
+
+                pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+                $.post(url, postdata, function (data) {
+layer.close(pop_index);
+                    if (data.code == 0) {
+                        layer.msg(data.msg, function () { location.href = "/adnn1n/Wanfa/";})
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }, 'json')
+                return false;
+            });
+
+        });
+</script>

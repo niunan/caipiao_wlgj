@@ -27,7 +27,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into emailset(");
             strSql.Append("createtime, email, password, smtp, cur  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @email, @password, @smtp, @cur  ) returning id;"); 
+            strSql.Append("@createtime, @email, @password, @smtp, @cur  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

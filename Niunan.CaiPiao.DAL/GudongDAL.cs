@@ -27,7 +27,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into gudong(");
             strSql.Append("createtime, username, email, remark  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @username, @email, @remark  ) returning id;"); 
+            strSql.Append("@createtime, @username, @email, @remark  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

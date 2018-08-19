@@ -44,6 +44,7 @@ namespace Niunan.CaiPiao.Web
             services.AddSingleton<DAL.UserinfoDAL>(new DAL.UserinfoDAL() { ConnStr = connStr });
             services.AddSingleton<DAL.LiushuiDAL>(new DAL.LiushuiDAL() { ConnStr = connStr });
             services.AddSingleton<DAL.ChongzhiDAL>(new DAL.ChongzhiDAL() { ConnStr = connStr });
+            services.AddSingleton<DAL.QihaoinfoDAL>(new DAL.QihaoinfoDAL() { ConnStr = connStr });
             services.AddSingleton<DAL.TixianDAL>(new DAL.TixianDAL() { ConnStr = connStr });
             services.AddSingleton<DAL.YugengdanDAL>(new DAL.YugengdanDAL() { ConnStr = connStr });
             services.AddSingleton<DAL.QuanxianDAL>(new DAL.QuanxianDAL() { ConnStr = connStr });

@@ -28,7 +28,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into qihaoinfo(");
             strSql.Append("createtime, qihao, starttime, endtime, kjtime, remark, czid, czname, kjcode, kjcode2, code1, code2, code3  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @qihao, @starttime, @endtime, @kjtime, @remark, @czid, @czname, @kjcode, @kjcode2, @code1, @code2, @code3  ) returning id;"); 
+            strSql.Append("@createtime, @qihao, @starttime, @endtime, @kjtime, @remark, @czid, @czname, @kjcode, @kjcode2, @code1, @code2, @code3  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

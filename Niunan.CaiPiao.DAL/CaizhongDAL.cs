@@ -28,7 +28,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into caizhong(");
             strSql.Append("createtime, czname, remark  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @czname, @remark  ) RETURNING id;"); 
+            strSql.Append("@createtime, @czname, @remark  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

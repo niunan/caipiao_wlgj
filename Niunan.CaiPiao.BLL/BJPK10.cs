@@ -136,9 +136,63 @@ namespace Niunan.CaiPiao.BLL
             return sb.ToString();
         }
 
-        public Task<string> InsertQiHao(string qihao, DateTime starttime, int qishu)
+        /// <summary>
+        /// 插入期号
+        /// 每天09:02 - 09:07 第一期
+        /// 23:52-23:57 最后一期 
+        /// </summary>
+        /// <param name="qihao"></param>
+        /// <param name="starttime"></param>
+        /// <param name="qishu"></param>
+        /// <returns></returns>
+        public  string  InsertQiHao(string qihao, DateTime starttime, int qishu)
         {
-            throw new NotImplementedException();
+            DAL.QihaoinfoDAL qhdal = new DAL.QihaoinfoDAL() { ConnStr = ConnStr};
+            StringBuilder sb = new StringBuilder();
+            int success = 0;
+            int exists = 0;
+            for (int i = 0; i < qishu; i++)
+            {
+                if (i != 0)
+                {
+                    qihao = (int.Parse(qihao) + 1).ToString();
+                    if (starttime.ToString("HH:mm") == "23:52")
+                    {
+                        //已经是当天最后一天了，下一个开始时间是明天的09:00
+                        starttime = DateTime.Parse(starttime.AddDays(1).ToString("yyyy-MM-dd 09:02"));
+                    }
+                    else
+                    {
+                        starttime = starttime.AddMinutes(5);
+                    }
+                }
+                int czid = 23;
+                string czname = "北京PK拾";
+                DateTime endtime = starttime.AddMinutes(4);
+                DateTime kjtime = starttime.AddMinutes(5);
+
+                if (qhdal.CalcCount($"qihao='{qihao}'") == 0)
+                {
+                    qhdal.Add(new Qihaoinfo()
+                    {
+                        qihao = qihao,
+                        createtime = DateTime.Now,
+                        czid = czid,
+                        czname = czname,
+                        starttime = starttime,
+                        endtime = endtime,
+                        kjtime = kjtime,
+
+                    });
+                    success++;
+                }
+                else
+                {
+                    exists++;
+                }
+            }
+            sb.Append($"成功插入{success}期期号，{exists}期期号已存在");
+            return sb.ToString();
         }
     }
 }

@@ -1,0 +1,158 @@
+﻿@model Niunan.CaiPiao.Model.Qihaoinfo
+@{
+    ViewBag.Title = Model.id == 0 ? "新增期号" : "编辑期号";
+}
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+<form class="layui-form" action="">
+
+    <div class='layui-form'>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>期号信息表</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.id, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>创建时间</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.createtime, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>期号</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.qihao, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>开始跟单时间</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.starttime, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>结束跟单时间</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.endtime, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>开奖时间</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.kjtime, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>备注</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.remark, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>采种ID</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.czid, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>彩种名称</label>
+            <div class='layui-input-inline'>
+                @Html.TextBoxFor(a => a.czname, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            <label class='layui-form-label'>&nbsp;</label>
+            <div class="layui-input-inline">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">@ViewBag.Title</button>
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+
+</form>
+<link rel="stylesheet" href="/content/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="/content/kindeditor/plugins/code/prettify.css" />
+<script src="/content/kindeditor/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="/content/kindeditor/lang/zh-CN.js"></script>
+<script charset="utf-8" src="/content/kindeditor/plugins/code/prettify.js"></script>
+<script>
+var pop_index;
+    var editor1;
+    KindEditor.ready(function (K) {
+          editor1 = K.create('#body', {
+            cssPath: '/content/kindeditor/plugins/code/prettify.css',
+            uploadJson: '/Adnn1n/Home/KE_Upload',
+            afterCreate: function () {
+                var self = this;
+                K.ctrl(document, 13, function () {
+                    self.sync();
+                    K('form[name=form1]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function () {
+                    self.sync();
+                    K('form[name=form1]')[0].submit();
+                });
+            }
+        });
+        prettyPrint();
+    });
+
+        /*加载layui编辑器*/
+        layui.use(['form',  'layer','laydate','upload'], function () {
+            var form = layui.form;
+var laydate = layui.laydate;
+  var upload = layui.upload;
+  var layer = layui.layer;
+  var $ = layui.jquery;
+
+
+ var uploadInst = upload.render({
+				elem:'#btnimg',
+                url: '/Adnn1n/Home/ImgUpload' //上传接口
+                , done: function (res) { //上传成功后的回调
+                   // console.log(res);
+                    document.getElementById("img1").src = res.data.src;
+                    document.getElementById("img").value = res.data.src;    //这里的img对应表中的字段，有可能是face也有可能是logo
+                }
+            });
+
+
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                var url = "/adnn1n/Qihaoinfo/add";
+                var postdata = data.field;
+				//postdata.body = editor1.html();
+                pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+                $.post(url, postdata, function (data) {
+layer.close(pop_index);
+                    if (data.code == 0) {
+                        layer.msg(data.msg, function () { location.href = "/adnn1n/Qihaoinfo/";})
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }, 'json')
+                return false;
+            });
+
+        });
+</script>

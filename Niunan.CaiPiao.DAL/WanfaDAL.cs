@@ -27,7 +27,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into wanfa(");
             strSql.Append("createtime, wfname, remark, czid, basemoney, groupname, peilv, isshow, shortname, sort, bigname, tesu, tesu_peilv, tesu_je  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @wfname, @remark, @czid, @basemoney, @groupname, @peilv, @isshow, @shortname, @sort, @bigname, @tesu, @tesu_peilv, @tesu_je  ) returning id;"); 
+            strSql.Append("@createtime, @wfname, @remark, @czid, @basemoney, @groupname, @peilv, @isshow, @shortname, @sort, @bigname, @tesu, @tesu_peilv, @tesu_je  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

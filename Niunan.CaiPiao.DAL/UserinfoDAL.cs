@@ -28,7 +28,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into userinfo(");
             strSql.Append("createtime, username, email, password, txpassword, mobile, address, bankno, bankname, remark, status, realname, idcard, balance, password3, erweima, parentid, parentname, parentpath, question, answer  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @username, @email, @password, @txpassword, @mobile, @address, @bankno, @bankname, @remark, @status, @realname, @idcard, @balance, @password3, @erweima, @parentid, @parentname, @parentpath, @question, @answer  ) returning id;"); 
+            strSql.Append("@createtime, @username, @email, @password, @txpassword, @mobile, @address, @bankno, @bankname, @remark, @status, @realname, @idcard, @balance, @password3, @erweima, @parentid, @parentname, @parentpath, @question, @answer  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

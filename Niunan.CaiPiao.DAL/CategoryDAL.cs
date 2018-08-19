@@ -26,7 +26,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into category(");
             strSql.Append("createtime, caname, bh, remark  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @caname, @bh, @remark  ) returning id;");
+            strSql.Append("@createtime, @caname, @bh, @remark  ) ;select @@IDENTITY");
 
             using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

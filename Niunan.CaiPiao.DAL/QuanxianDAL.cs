@@ -28,7 +28,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into quanxian(");
             strSql.Append("createtime, qxname, url, bh, pbh, remark  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @qxname, @url, @bh, @pbh, @remark  ) returning id;"); 
+            strSql.Append("@createtime, @qxname, @url, @bh, @pbh, @remark  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

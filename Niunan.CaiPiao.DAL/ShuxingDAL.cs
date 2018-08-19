@@ -28,7 +28,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into shuxing(");
             strSql.Append("createtime, sxname, sxvalue, remark  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @sxname, @sxvalue, @remark  ) returning id;"); 
+            strSql.Append("@createtime, @sxname, @sxvalue, @remark  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

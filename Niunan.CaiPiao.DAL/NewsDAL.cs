@@ -27,7 +27,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into news(");
             strSql.Append("createtime, title, body, cabh, caname, visitnum  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @title, @body, @cabh, @caname, @visitnum  ) returning id;"); 
+            strSql.Append("@createtime, @title, @body, @cabh, @caname, @visitnum  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

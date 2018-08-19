@@ -1240,7 +1240,7 @@ namespace Niunan.CaiPiao.BLL
             return sb.ToString();
         }
 
-        public async Task<string> InsertQiHao(string qihao, DateTime starttime, int qishu)
+        public  string  InsertQiHao(string qihao, DateTime starttime, int qishu)
         {
             DAL.QihaoinfoDAL qhdal = new DAL.QihaoinfoDAL();
             StringBuilder sb = new StringBuilder();

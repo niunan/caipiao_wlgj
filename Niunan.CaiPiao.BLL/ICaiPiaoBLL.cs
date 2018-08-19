@@ -38,9 +38,8 @@ namespace Niunan.CaiPiao.BLL
         /// </summary>
         /// <param name="qihao">开始时间对应的期号</param>
         /// <param name="starttime">开始时间</param>
-        /// <param name="qishu">插入几期</param>
-    
-         Task<string> InsertQiHao(string qihao, DateTime starttime, int qishu);
+        /// <param name="qishu">插入几期</param> 
+        string   InsertQiHao(string qihao, DateTime starttime, int qishu);
 
         /// <summary>
         /// 插入开奖号，扒福彩网页面HTML，取最新期号开奖数据插入

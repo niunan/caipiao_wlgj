@@ -29,7 +29,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into [chongzhi](");
             strSql.Append("[createtime], [userid], [username], [status], [remark], [money], [bankname], [realname], [bankno], [paytype]  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @userid, @username, @status, @remark, @money, @bankname, @realname, @bankno, @paytype  ) returning id;"); 
+            strSql.Append("@createtime, @userid, @username, @status, @remark, @money, @bankname, @realname, @bankno, @paytype  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

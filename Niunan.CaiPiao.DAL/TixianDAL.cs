@@ -27,7 +27,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into tixian(");
             strSql.Append("createtime, userid, username, money, remark, status, replay, bankno, bankname, realname, userbankid, khh  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @userid, @username, @money, @remark, @status, @replay, @bankno, @bankname, @realname, @userbankid, @khh  ) returning id;"); 
+            strSql.Append("@createtime, @userid, @username, @money, @remark, @status, @replay, @bankno, @bankname, @realname, @userbankid, @khh  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

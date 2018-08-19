@@ -28,7 +28,7 @@ namespace Niunan.CaiPiao.DAL
             strSql.Append("insert into yugengdan(");
             strSql.Append("createtime, adminid, adminname, userid, username, remark  )");
             strSql.Append(" values (");
-            strSql.Append("@createtime, @adminid, @adminname, @userid, @username, @remark  ) returning id;"); 
+            strSql.Append("@createtime, @adminid, @adminname, @userid, @username, @remark  ) ;select @@IDENTITY"); 
  
     using (var connection = ConnectionFactory.GetOpenConnection(ConnStr))
             {

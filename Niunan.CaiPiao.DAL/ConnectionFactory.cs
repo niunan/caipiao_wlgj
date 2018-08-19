@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql;
+ 
 
 
 namespace Niunan.CaiPiao.DAL
@@ -21,8 +21,8 @@ namespace Niunan.CaiPiao.DAL
         /// <returns></returns>
         public static DbConnection GetOpenConnection(string connStr)
         {
-            var connection = new  NpgsqlConnection(connStr);
-           //  var connection = new System.Data.SqlClient.SqlConnection(connStr); 
+            var connection = new MySql.Data.MySqlClient.MySqlConnection(connStr);
+           
             connection.Open(); 
             return connection; 
         }
