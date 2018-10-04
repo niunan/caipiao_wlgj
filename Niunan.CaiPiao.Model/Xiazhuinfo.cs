@@ -128,7 +128,7 @@ namespace Niunan.CaiPiao.Model
 			get{return _qihao;}
 		}
 		private int _iszj  = 0;
-		/// <summary>0末中奖，1已中奖
+		/// <summary>0未开奖，1已中奖， 2未中奖
 		/// 
 		/// </summary>
 		public int iszj

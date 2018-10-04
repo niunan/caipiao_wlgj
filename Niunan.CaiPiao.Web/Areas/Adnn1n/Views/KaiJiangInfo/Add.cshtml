@@ -1,0 +1,97 @@
+﻿@model Niunan.CaiPiao.Model.Qihaoinfo
+@{
+    ViewBag.Title =  "手工开奖";
+}
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+ 
+<form class="layui-form" action="">
+
+    <div class='layui-form'>
+
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>期号</label>
+            <div class='layui-input-inline' style="line-height:38px;">
+               @Model.qihao
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>下注时间</label>
+            <div class='layui-input-block' style="line-height:38px;">
+                @Model.starttime.ToString("yyyy-MM-dd HH:mm:ss")
+                ~
+                @Model.endtime.ToString("yyyy-MM-dd HH:mm:ss")
+            </div>
+            <div class='layui-form-mid layui-word-aux'> </div>
+        </div>
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>开奖时间</label>
+            <div class='layui-input-block' style="line-height:38px;">
+                @Model.kjtime.ToString("yyyy-MM-dd HH:mm:ss")
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div> 
+        <div class='layui-form-item'>
+            <label class='layui-form-label'>开奖号</label>
+            <div class='layui-input-block'>
+                @Html.TextBoxFor(a => a.kjcode, new { @class = "layui-input", lay_verify = "required" })
+            </div>
+            <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
+        </div>  
+    
+        <div class="layui-form-item">
+            <label class='layui-form-label'>&nbsp;</label>
+            <div class="layui-input-inline">
+                <button id="btn1" class="layui-btn" lay-submit="" lay-filter="demo1">@ViewBag.Title</button>
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(a => a.id)
+            </div>
+        </div>
+    </div>
+
+</form>
+ 
+<script>
+var pop_index;
+ 
+
+        /*加载layui编辑器*/
+        layui.use(['form',  'layer','laydate','upload'], function () {
+            var form = layui.form;
+var laydate = layui.laydate;
+  var upload = layui.upload;
+  var layer = layui.layer;
+  var $ = layui.jquery;
+
+ 
+
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                var url = "/adnn1n/kaijianginfo/add";
+                var postdata = data.field;
+				//postdata.body = editor1.html();
+
+        $('#btn1').attr("class", "layui-btn layui-btn-disabled");
+            $('#btn1').attr("disabled", "disabled");
+
+                pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+                $.post(url, postdata, function (data) {
+layer.close(pop_index);
+                    if (data.code == 0) {
+                        layer.msg(data.msg, function () { location.href = "/adnn1n/qihaoinfo/index";})
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }, 'json')
+                return false;
+            });
+
+        });
+</script>

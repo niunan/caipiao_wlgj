@@ -33,5 +33,19 @@ namespace Niunan.CaiPiao.Web.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        /// <summary>
+        /// 计算倒计时
+        /// </summary>
+        /// <param name="endtime"></param>
+        /// <returns></returns>
+        public ActionResult CalcDJS(DateTime endtime)
+        {
+            TimeSpan ts = endtime - DateTime.Now;
+            int hh = ts.Hours;
+            int mm = ts.Minutes;
+            int ss = ts.Seconds;
+            return Json(new { success = true, hh = hh.ToString("d2"), mm = mm.ToString("d2"), ss = ss.ToString("d2") });
+        }
     }
 }

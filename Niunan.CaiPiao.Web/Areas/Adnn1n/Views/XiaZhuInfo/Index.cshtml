@@ -1,0 +1,252 @@
+﻿@{
+    ViewBag.Title = "所有跟单";
+}
+<style>
+    .layui-form select {
+        display: block;
+        border: 1px solid #d2d2d2;
+        height: 38px;
+    }
+</style>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+<div style="padding:10px;">
+    <div class="layui-form">
+        <a class="layui-btn" href="/Adnn1n/Xiazhuinfo/Add">
+            <i class="layui-icon">&#xe608;</i> 添加
+        </a>
+        <div class="layui-input-inline">
+            <input type="text" id="search_key" class="layui-input" placeholder="标题关键字" />
+        </div>
+        <div class="layui-input-inline">
+            跟单时间：
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" id="search_start" class="layui-input" placeholder="开始时间" />
+        </div>
+        <div class="layui-input-inline">
+            ~
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" id="search_end" class="layui-input" placeholder="结束时间" />
+        </div>
+        <div class="layui-input-inline">
+            <select id="search_cabh">
+                <option value="">--所有分类--</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <button class="layui-btn layui-btn-normal" type="button" onclick="search()"><i class="layui-icon">&#xe615;</i> 查询</button>
+        </div>
+
+    </div>
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>管理</th> 
+                <th>跟单时间</th> 
+                <th>跟单用户</th> 
+                <th>采种</th> 
+                <th>玩法</th>
+                <th>下注号</th>
+                <th>倍数</th>
+                <th>下注金额</th> 
+                <th>期号</th>
+                <th>是否中奖</th>
+                <th>中奖金额</th>
+                <th>开奖号码</th>
+                <th>手续费</th>  
+
+
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <div>
+        <div style="float: left; line-height: 55px;margin: 0 15px; font-size: 16px;">
+            当前共<span id="totalcount"></span>条记录，每页<span id="pagesize"></span>条，第<span id="pageindex"></span>页/共<span id="pagecount"></span>页
+        </div>
+        <div id="pages">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var pop_index;
+    /*日期选择控件设置*/
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#search_start' //指定元素
+        });
+        laydate.render({
+            elem: '#search_end' //指定元素
+        });
+    });
+
+
+
+    var pagesize = 10; //页大小
+    document.getElementById('pagesize').innerHTML = pagesize;
+
+    search();
+
+    /*加载第X页数据*/
+    function load_blog_data(pageindex) {
+        //  console.log("加载第" + pageindex + "页");
+
+
+        layui.use('layer', function () {
+            var $ = layui.jquery, layer = layui.layer;
+
+            $('#pageindex').text(pageindex);
+
+
+            var postdata = getcond();
+
+            var url = "/Adnn1n/Xiazhuinfo/List?pageindex=" + pageindex + "&pagesize=" + pagesize;
+            pop_index = layer.load(0, {
+                shade: [0.3, '#000'] //0.1透明度的白色背景
+            });
+            $.post(url, postdata, function (json) {
+                layer.close(pop_index);
+                var html = '';
+                $.each(json, function (i, item) {
+                    // console.log("第" + i + "个元素：");
+                    //  console.log(blog);
+                    var zjstr = '';
+                    if (item.iszj == 1) {
+                        zjstr = '<span style="color:green;font-weight:bold;">已中奖</span>';
+                    } else if (item.iszj == 2) {
+                        zjstr = '<span style="color:red;">未中奖</span>';
+                    } else {
+                        zjstr = '<span>未开奖</span>';
+                    }
+                    var duijiang = '';
+                    if (item.iszj == 0) {
+                        duijiang =   '        <a href="javascript:void(0)" onclick="duijiang('+item.id+')"><i class="layui-icon">&#xe642;</i> 兑奖</a>';
+                    }
+
+                    html += '<tr>';
+                    html += '    <td>'; 
+                    html += duijiang;
+                    html += '    </td>'; 
+                    html += '    <td>' + item.createtime + '</td>'; 
+                    html += '    <td>' + item.username + '</td>'; 
+                    html += '    <td>' + item.czname + '</td>'; 
+                    html += '    <td>' + item.wfname + '</td>';
+                    html += '    <td>' + item.buycode + '</td>';
+                    html += '    <td>' + item.beishu + '</td>';
+                    html += '    <td>' + item.buymoney + '</td>'; 
+                    html += '    <td>' + item.qihao + '</td>';
+                    html += '    <td>' + zjstr + '</td>';
+                    html += '    <td>' + item.zjmoney + '</td>';
+                    html += '    <td>' + item.kjcode + '</td>';
+                    html += '    <td>' + item.shouxufee + '</td>';  
+
+                    html += '</tr>';
+
+                })
+
+                $('#tbody').html(html);
+
+            }, 'json');
+        })
+
+
+    }
+
+    //兑奖
+    function duijiang(id) {
+        var url = "/adnn1n/xiazhuinfo/DuiJiang";
+        var postdata = { id: id };
+        $.post(url, postdata, function (data) {
+            if (data.code == 0) {
+                alert(data.msg);
+                location.reload();
+            } else {
+                alert(data.msg);
+            }
+        }, 'json')
+    }
+
+    /*拼接条件返回postdata*/
+    function getcond() {
+
+        var key = document.getElementById("search_key").value;
+        var start = document.getElementById('search_start').value;
+        var end = document.getElementById('search_end').value;
+        var cabh = document.getElementById('search_cabh').value;
+        var postdata = { key: key, start: start, end: end, cabh: cabh };
+        return postdata;
+    }
+
+    /*查询*/
+    function search() {
+
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+
+            var postdata = getcond();
+
+            var url = "/Adnn1n/Xiazhuinfo/GetTotalCount?t=" + new Date().valueOf();
+            $.post(url, postdata, function (count) {
+
+                var pagecount = (count % pagesize == 0 ? count / pagesize : Math.ceil(count / pagesize)); //总页数
+                // console.log("总记录数：" + count + "，总页数：" + pagecount);
+                $('#totalcount').text(count);
+                $('#pagecount').text(pagecount);
+
+                laypage.render({
+                    elem: 'pages',
+                    count: count, //得到总页数
+                    limit: pagesize,
+                    jump: function (obj) {
+                        var pageindex = obj.curr;
+                        //layer.alert("点击了第" + pageindex + "页。");
+                        //读取后台数据数据返回JSON后拼接HTML
+                        load_blog_data(pageindex);
+                    }
+                });
+
+            });
+
+        });
+
+    }
+
+
+    /*删除*/
+    function del(id) {
+        layui.use('layer', function () {
+            var layer = layui.layer;
+            var $ = layui.jquery;
+
+            layer.confirm('是否确认删除？', function () {
+
+                var url = "/Adnn1n/Xiazhuinfo/Delete?ids=" + id;
+                pop_index = layer.load(0, {
+                    shade: [0.3, '#000'] //0.1透明度的白色背景
+                });
+                $.post(url, function (data) {
+                    layer.close(pop_index);
+                    if (data.code == 0) {
+                        layer.msg(data.msg, function () { location.reload(); });
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                })
+
+            })
+
+
+
+        })
+
+
+    }
+</script>

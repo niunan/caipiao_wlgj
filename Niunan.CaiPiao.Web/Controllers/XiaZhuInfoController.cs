@@ -50,9 +50,9 @@ namespace Niunan.CaiPiao.Web.Controllers
                     {
                         continue;
                     }
-                    double buymoney = wf.basemoney * zhushu * beishu; //下注金额=玩法的基准金额*下注数*下注倍数
+                    double buymoney = 2 * zhushu * beishu; //下注金额=2*下注数*下注倍数
 
-                    sb.Append(dal.XiaZhu(userids, buymoney, beishu, qihao, true, wfid, czid) + "<br />");
+                    sb.Append(dal.XiaZhu(userids,buycode, buymoney, beishu, qihao, true, wfid, czid) + "<br />");
                 }
                 return Json(new { code = 0, msg = sb.ToString() });
             }

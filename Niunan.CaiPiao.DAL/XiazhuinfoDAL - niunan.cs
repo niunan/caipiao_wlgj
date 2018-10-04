@@ -236,6 +236,7 @@ namespace Niunan.CaiPiao.DAL
         /// 下注
         /// </summary>
         /// <param name="userids">用户ID，以,间隔</param> 
+        /// <param name="buycode">下注号码</param>
         /// <param name="buymoney">下注金额</param>
         /// <param name="beishu">倍数</param>
         /// <param name="qihao">期号</param>
@@ -243,13 +244,14 @@ namespace Niunan.CaiPiao.DAL
         /// <param name="wfid">玩法ID</param>
         /// <param name="czid">采种ID</param>
         /// <returns>返回相关字符串</returns>
-        public string XiaZhu(string userids, double buymoney, double beishu, string qihao, bool judgetime, int wfid, int czid)
+        public string XiaZhu(string userids,string buycode, double buymoney, double beishu, string qihao, bool judgetime, int wfid, int czid)
         {
             DAL.WanfaDAL wfdal = new WanfaDAL() { ConnStr = ConnStr };
             DAL.ShuxingDAL sxdal = new ShuxingDAL() { ConnStr = ConnStr };
             DAL.LiushuiDAL lsdal = new LiushuiDAL() { ConnStr = ConnStr };
             DAL.UserinfoDAL udal = new UserinfoDAL() { ConnStr = ConnStr };
             DAL.CaizhongDAL czdal = new CaizhongDAL() { ConnStr = ConnStr };
+            DAL.QihaoinfoDAL qhdal = new QihaoinfoDAL() { ConnStr = ConnStr };
 
             Model.Caizhong cz = czdal.GetModel(czid);
             if (cz == null)
@@ -257,14 +259,11 @@ namespace Niunan.CaiPiao.DAL
                 throw new Exception("采种不存在，请联系程序狗！");
             }
 
-            Model.Shuxing sx = sxdal.GetModelByCond($"sxname='大小单双版手续费'");
-            if (sx == null)
-            {
-                throw new Exception("没有配置到大小单双版手续费，请联系程序狗！");
-            }
-            double bfb_shouxufee = double.Parse(sx.sxvalue);
 
-            Model.Qihaoinfo qh = new DAL.QihaoinfoDAL().GetModelByCond($"qihao='{qihao}'");
+            double bfb_shouxufee = 0; //手续费百分比
+
+
+            Model.Qihaoinfo qh =qhdal.GetModelByCond($"qihao='{qihao}'");
             if (qh == null)
             {
                 throw new Exception("没有当前期号");
@@ -289,23 +288,17 @@ namespace Niunan.CaiPiao.DAL
             }
             wfname = wf.wfname;
 
-            basemoney = wf.basemoney;
+            basemoney = buymoney;
 
 
             if (basemoney == 0)
             {
                 throw new Exception("金额为空，请检查玩法名称。");
             }
-            if (wfname.Contains("专家版"))
-            {
-                beishu = 1;
-                shouxufee = 0;
-            }
-            else
-            {
-                basemoney = basemoney * beishu;
-                shouxufee = basemoney * (bfb_shouxufee / 100);
-            }
+
+      
+            shouxufee = basemoney * (bfb_shouxufee / 100);
+
             StringBuilder sb = new StringBuilder();
 
             string[] ss = userids.Split(',');
@@ -329,7 +322,7 @@ namespace Niunan.CaiPiao.DAL
                             wfname = wfname,
                             shouxufee = shouxufee,
                             beishu = beishu,
-                            buycode = wfname,
+                            buycode = buycode,
                             buymoney = basemoney,
                             createtime = DateTime.Now,
                             czid = cz.id,

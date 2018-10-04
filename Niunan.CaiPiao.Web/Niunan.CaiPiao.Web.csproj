@@ -127,4 +127,13 @@
     <Folder Include="Areas\Adnn1n\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Areas\Adnn1n\Views\KaiJiangInfo\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Adnn1n\Views\XiaZhuInfo\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

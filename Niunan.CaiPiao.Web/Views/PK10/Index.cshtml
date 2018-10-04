@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "北京PK拾";
+    Niunan.CaiPiao.Model.CaiPiao current = ViewBag.current;
 }
 <link href="~/css/play.css" rel="stylesheet" />
 <link href="~/css/style-index.css" rel="stylesheet" />
@@ -35,32 +36,40 @@
                     <!-- 投注信息 -->
                     <div class="lottery-open-info">
                         <div class="issue">
-                            第 <span id="span_currentqihao">180501046</span> 期<br>离投注截止还有
-                            <input id="hfendtime" value="2018-05-01 13:39:50" type="hidden">
+                            第 <span id="span_currentqihao">@current.qihao</span> 期<br>离投注截止还有
+                      <input type="hidden" id="hfendtime" value="@ViewBag.current.kjtime.ToString("yyyy-MM-dd HH:mm:ss")" />
                         </div>
                         <div class="surplus-time" data-field="global-surplus-time1">
-                            <div id="hh" class="hh">00</div>
-                            <div id="mm" class="mm">02</div>
-                            <div id="ss" class="ss">05</div>
+                            <div id="hh" class="hh">--</div>
+                            <div id="mm" class="mm">--</div>
+                            <div id="ss" class="ss">--</div>
                         </div>
                     </div>
                     <!--开奖信息-->
                     <div class="lottery-open-code">
                         <div class="issue">
-                            第 <span id="span_prevqihao">180501045</span> 期<br>开奖号码
+                            第 <span id="span_prevqihao">@ViewBag.prev.qihao</span> 期<br>开奖号码
                         </div>
                         <div class="code">
                             <div class="list">
-                                <div id="ball1" class="ball">-</div>
-                                <div id="ball2" class="ball">-</div>
-                                <div id="ball3" class="ball">-</div>
-                                <div id="ball4" class="ball">-</div>
-                                <div id="ball5" class="ball">-</div>
-                                <div id="ball6" class="ball">-</div>
-                                <div id="ball7" class="ball">-</div>
-                                <div id="ball8" class="ball">-</div>
-                                <div id="ball9" class="ball">-</div>
-                                <div id="ball10" class="ball">-</div>
+                                @{
+                                    List<string> list_kj = new List<string>() { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" };
+                                    if (!string.IsNullOrEmpty(ViewBag.prev.kjcode))
+                                    {
+                                        string kjcode = ViewBag.prev.kjcode;
+                                        list_kj = kjcode.Split(',').ToList<string>();
+                                    }
+                                }
+                                <div id="ball1" class="ball">@list_kj[0]</div>
+                                <div id="ball2" class="ball">@list_kj[1]</div>
+                                <div id="ball3" class="ball">@list_kj[2]</div>
+                                <div id="ball4" class="ball">@list_kj[3]</div>
+                                <div id="ball5" class="ball">@list_kj[4]</div>
+                                <div id="ball6" class="ball">@list_kj[5]</div>
+                                <div id="ball7" class="ball">@list_kj[6]</div>
+                                <div id="ball8" class="ball">@list_kj[7]</div>
+                                <div id="ball9" class="ball">@list_kj[8]</div>
+                                <div id="ball10" class="ball">@list_kj[9]</div>
                             </div>
                         </div>
                         <div class="tools">
@@ -1465,34 +1474,62 @@
         return html;
     }
 
+
+    /*每十秒取一次上一期的开奖号*/
+    setTimeout("get_prev_kjcode()", 10000);
+
+    function get_prev_kjcode() {
+        var prev_qihao = $('#span_prevqihao').text();
+        var url = "/pk10/GetKjCode?qihao=" + prev_qihao + "&t=" + new Date().valueOf();
+        $.getJSON(url, function (json) {
+            $("#ball1").html(json.ball1);
+            $("#ball2").html(json.ball2);
+            $("#ball3").html(json.ball3);
+            $("#ball4").html(json.ball4);
+            $("#ball5").html(json.ball5);
+            $("#ball6").html(json.ball6);
+            $("#ball7").html(json.ball7);
+            $("#ball8").html(json.ball8);
+            $("#ball9").html(json.ball9);
+            $("#ball10").html(json.ball10);
+
+            setTimeout("get_prev_kjcode()", 10000);
+        });
+    }
+
     /*每隔1秒取倒计时*/
     setTimeout("get_djs()", 1000);
 
     function get_djs() {
         var endtime = $('#hfendtime').val();
         var url = "/Home/CalcDJS?endtime=" + endtime + "&t=" + new Date().valueOf();
-        //$.getJSON(url, function (json) {
-        //    $('#hh').html(json.hh);
-        //    $('#mm').html(json.mm);
-        //    $('#ss').html(json.ss);
+        $.getJSON(url, function (json) {
+            $('#hh').html(json.hh);
+            $('#mm').html(json.mm);
+            $('#ss').html(json.ss);
 
-        //    //都是0了以后再重新取当前期和上一期
-        //    if (parseInt(json.hh) == 0 && parseInt(json.mm) == 0 && parseInt(json.ss) < 0) {
-        //        var url2 = "/ssc_cq/GetCurrentAndPrev?t=" + new Date().valueOf();
-        //        $.getJSON(url2, function (json2) {
-        //            $('#span_currentqihao').html(json2.current_qihao);
-        //            $('#hfendtime').val(json2.current_endtime);
-        //            $('#span_prevqihao').html(json2.prev_qihao);
-        //            $('#ball1').html('-');
-        //            $('#ball2').html('-');
-        //            $('#ball3').html('-');
-        //            $('#ball4').html('-');
-        //            $('#ball5').html('-');
-        //        })
-        //    }
+            //都是0了以后再重新取当前期和上一期
+            if (parseInt(json.hh) == 0 && parseInt(json.mm) == 0 && parseInt(json.ss) < 0) {
+                var url2 = "/pk10/GetCurrentAndPrev?t=" + new Date().valueOf();
+                $.getJSON(url2, function (json2) {
+                    $('#span_currentqihao').html(json2.current_qihao);
+                    $('#hfendtime').val(json2.current_endtime);
+                    $('#span_prevqihao').html(json2.prev_qihao);
+                    $('#ball1').html('-');
+                    $('#ball2').html('-');
+                    $('#ball3').html('-');
+                    $('#ball4').html('-');
+                    $('#ball5').html('-');
+                    $('#ball6').html('-');
+                    $('#ball7').html('-');
+                    $('#ball8').html('-');
+                    $('#ball9').html('-');
+                    $('#ball10').html('-');
+                })
+            }
 
-        //    setTimeout("get_djs()", 1000);
-        //});
+            setTimeout("get_djs()", 1000);
+        });
     }
 
     /*倍数的加减按钮*/

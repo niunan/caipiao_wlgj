@@ -142,6 +142,22 @@ namespace Niunan.CaiPiao.DAL
                 return qh;
             }
         }
+
+        /// <summary>
+        /// 根据期号和采种ID来取实体类
+        /// </summary>
+        /// <param name="qihao"></param>
+        /// <param name="czid"></param>
+        /// <returns></returns>
+        public Model.Qihaoinfo GetModelByQiHaoAndCZID(string qihao,int czid)
+        {
+            string sql = "select * from qihaoinfo where qihao=@qihao and czid=@czid";
+            using (var conn = ConnectionFactory.GetOpenConnection(ConnStr))
+            {
+                Model.Qihaoinfo qh = conn.QuerySingleOrDefault<Model.Qihaoinfo>(sql, new { qihao = qihao ,czid=czid});
+                return qh;
+            }
+        }
     }
 }
 

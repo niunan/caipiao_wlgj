@@ -8,7 +8,7 @@ namespace Niunan.CaiPiao.Model
     public partial class Xiazhuinfo
     {
         /// <summary>
-        /// 0末中奖，1已中奖，2特殊号，3后台撤销
+        /// 0未开奖，1已中奖，2未中奖
         /// </summary>
         public string iszjremark
         {
@@ -17,25 +17,15 @@ namespace Niunan.CaiPiao.Model
                 string str = "";
                 switch (_iszj)
                 {
-                    case 0:
-                        if (string.IsNullOrEmpty(_kjcode))
-                        {
-                            str = "待开奖";
-                        }
-                        else
-                        {
-                            str = "末中奖";
-                        }
+                    case 0: 
+                        str = "末中奖"; 
                         break;
                     case 1:
                         str = "已中奖";
                         break;
                     case 2:
-                        str = "特殊号";
-                        break;
-                    case 3:
-                        str = "后台撤销";
-                        break;
+                        str = "未中奖";
+                        break; 
                     default:
                         break;
                 }
