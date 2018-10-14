@@ -280,7 +280,7 @@ namespace Niunan.CaiPiao.BLL
             {
                 if (i != 0)
                 {
-                    qihao = (int.Parse(qihao) + 1).ToString();
+                    qihao = (long.Parse(qihao) + 1).ToString();
                     if (starttime.ToString("HH:mm") == "23:52")
                     {
                         //已经是当天最后一天了，下一个开始时间是明天的09:00

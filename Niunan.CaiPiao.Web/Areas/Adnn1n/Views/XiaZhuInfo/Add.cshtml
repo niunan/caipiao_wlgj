@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "跟单";
+}
+@model Niunan.CaiPiao.Model.CaiPiao
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">@ViewBag.Title</li>
+    </ul>
+</div>
+<form class="layui-form" action="">
+    <table class="layui-table">
+        <tr>
+            <td>下注用户</td>
+            <td>
+                @Html.DropDownList("userid", new SelectList(ViewBag.userlist,"id","ddltitle"))
+            </td>
+        </tr>
+        <tr>
+            <td>彩种</td>
+            <td>
+                <select>
+                    <option>北京PK10</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>玩法</td>
+            <td>
+                <select>
+                    <option>猜冠军</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>期号</td>
+            <td>
+                <div class="layui-input-inline">
+                    <input type="text" name="qihao" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="@Model.qihao">
+                </div>
+                <div class="layui-input-inline">
+                   @Model.starttime.ToString("yyyy-MM-dd HH:mm:ss")
+                    ~
+                    @Model.endtime.ToString("yyyy-MM-dd HH:mm:ss")
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td>下注号</td>
+            <td>
+                <div class="layui-input-inline">
+                    <input type="text" name="buycode" required lay-verify="required" placeholder="输入如：01，暂不支持输入多位" autocomplete="off" class="layui-input">
+                </div>
+            </td>
+        </tr> 
+        <tr>
+            <td>金额</td>
+            <td>￥2</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    @Html.AntiForgeryToken()
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script>
+    var pop_index;
+layui.use(['layer','form'], function(){
+    var form = layui.form;
+    var $ = layui.jquery, layer = layui.layer;
+
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+      var postdata = data.field;
+      var url = "/adnn1n/xiazhuinfo/add";
+      pop_index = layer.load(0, {
+          shade: [0.3, '#000'] //0.1透明度的白色背景
+      }); 
+      $.post(url, postdata, function (data) {
+          layer.close(pop_index);
+          if (data.code == 0) {
+              layer.alert(data.msg, function () { location.href = "/adnn1n/xiazhuinfo/add" });
+          } else {
+              layer.alert(data.msg);
+          }
+      }, 'json');
+
+    return false;
+  });
+});
+</script>

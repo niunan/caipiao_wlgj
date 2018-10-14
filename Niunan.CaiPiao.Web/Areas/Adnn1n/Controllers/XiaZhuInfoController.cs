@@ -17,11 +17,12 @@ namespace Niunan.CaiPiao.Web.Areas.Adnn1n.Controllers
     [Area("Adnn1n")]
     public class XiaZhuInfoController : Controller
     {
-
         DAL.XiazhuinfoDAL dal;
+        DAL.UserinfoDAL udal;
         BLL.ICaiPiaoBLL cpbll;
-        public XiaZhuInfoController(DAL.XiazhuinfoDAL dal, BLL.BJPK10 pk10bll)
+        public XiaZhuInfoController(DAL.XiazhuinfoDAL dal, BLL.BJPK10 pk10bll,DAL.UserinfoDAL udal)
         {
+            this.udal = udal;
             this.dal = dal;
             this.cpbll = pk10bll;
         }
@@ -119,31 +120,28 @@ namespace Niunan.CaiPiao.Web.Areas.Adnn1n.Controllers
 
         public ActionResult Add(int? id)
         {
-            Model.Xiazhuinfo n = new Model.Xiazhuinfo();
-            if (id != null)
+            ViewBag.userlist = udal.GetListArray("1=1 order by username");
+            Model.CaiPiao current_cp = cpbll.GetCurrentModel();
+            if (current_cp==null)
             {
-                n = dal.GetModel(id.Value);
+                return Content("当前期号不存在，请联系管理员添加！");
             }
-            return View(n);
+            return View(current_cp);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Model.Xiazhuinfo m)
+        public ActionResult Add(string buycode,string qihao,string userid)
         {
             try
             {
-                if (m.id == 0)
-                {
-                    dal.Add(m);
-                    return Json(new { code = 0, msg = "新增成功！" });
-                }
-                else
-                {
-                    dal.Update(m);
-                    return Json(new { code = 0, msg = "编辑成功！" });
-                }
+                double buymoney = 2;
+                int beishu = 1;
+                int czid = 23; //北京PK10
+                int wfid = 20000101; //猜冠军
+                string str = dal.XiaZhu(userid, buycode, buymoney, beishu, qihao, true, wfid, czid);
+                return Json(new { code=0,msg = str});
             }
             catch (Exception ex)
             {
