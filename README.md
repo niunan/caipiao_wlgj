@@ -2,10 +2,10 @@
 彩票项目，学习用，asp.net core+mysql+dapper+sql拼接  有空就做做，目前也就做到了整个项目的1%  
 
 ### 界面：
- ![前台1](http://ohpxbzczu.bkt.clouddn.com/wlgj1.png)
- ![前台2](http://ohpxbzczu.bkt.clouddn.com/wlgj2.png)
- ![前台2](http://ohpxbzczu.bkt.clouddn.com/wlgj3.png)
- ![前台2](http://ohpxbzczu.bkt.clouddn.com/wlgj4.png)
+ ![前台1](http://image.niunan.net/wlgj1.png)
+ ![前台2](http://image.niunan.net/wlgj2.png)
+ ![前台2](http://image.niunan.net/wlgj3.png)
+ ![前台2](http://image.niunan.net/wlgj4.png)
 
 ### 思路： 
  1.把所有期号及所在时间段都加到数据库中 
@@ -17,6 +17,9 @@
  因为是抓取官方HTML页面，所以有时经常是抓取不到开奖号的，网上那个‘澳门首家网上XXX’的应该是有别的渠道可以取得开奖号的...  
  
 ### 更新日志： 
+
+###### 2018年11月15日
+ 更新readme文件
 
 ###### 2018年10月14日
  后台跟单功能做好，只是插入北京PK10的猜冠军
